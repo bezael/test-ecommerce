@@ -1,11 +1,11 @@
-import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { ProductsService } from '../../api/products.service';
+import { ProductsService } from '@api/products.service';
+import { CardComponent } from '@features/products/card/card.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [JsonPipe],
+  imports: [CardComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })

@@ -1,12 +1,12 @@
-<div class="w-full p-4 lg:w-1/4 md:w-1/2">
-  <a class="relative block h-48 overflow-hidden rounded" [routerLink]="['/product-details', 452]">
-    <img alt="product-image" class="block object-cover object-center w-full h-full"
-      src="https://dummyimage.com/420x260">
-  </a>
-  <div class="mt-4">
-    <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">CATEGORY</h3>
-    <h2 class="text-lg font-medium text-gray-900 title-font"><a class="" [routerLink]="['/product-details', 452]">
-        PRODUCT TITLE</a></h2>
-    <p class="mt-1">$16.00</p>
-  </div>
+<a class="relative block h-48 overflow-hidden rounded" [routerLink]="['/product-details', product.id]">
+  <img class="w-full transition duration-500 transform hover:scale-105" src="{{product.image}}" alt="{{product.title}}">
+</a>
+
+<div class="mt-4">
+  <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">{{product.category}}</h3>
+  <h2 class="text-lg font-medium text-gray-900 title-font">
+    <a [routerLink]="['/product-details', product.id]">
+      {{product.title | slice:0:30}}</a>
+  </h2>
+  <p class="mt-1">{{product.price | currency}}</p>
 </div>

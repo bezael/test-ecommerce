@@ -20,7 +20,7 @@
           }}</span>
 
         <div *ngIf="showCart" [ngClass]="{'show-cart-animation': showCart}"
-          class="absolute right-0 w-48 p-2 mt-2 text-white rounded-sm bg-slate-400">
+          class="absolute right-0 z-30 w-48 p-2 mt-2 text-white rounded-sm bg-slate-400">
           <div *ngFor="let product of products" class="flex items-center justify-between">
             <span>{{'1'}} {{ product.name }}</span>
             <span>{{ product.price | currency }}</span>
