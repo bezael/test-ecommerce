@@ -1,12 +1,22 @@
-<a class="relative block h-48 overflow-hidden rounded" [routerLink]="['/product-details', product.id]">
-  <img class="w-full transition duration-500 transform hover:scale-105" src="{{product.image}}" alt="{{product.title}}">
-</a>
+<div class="p-4 mt-2 mb-6 overflow-hidden rounded-b-lg shadow-none hover:shadow-xl">
+  <a class="relative block h-48 overflow-hidden rounded" [routerLink]="['/product-details', (product.id)]">
+    <img class="w-full transition duration-500 transform hover:scale-105" src="{{ product.image }}"
+      alt="{{ product.title }}" />
+  </a>
 
-<div class="mt-4">
-  <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">{{product.category}}</h3>
-  <h2 class="text-lg font-medium text-gray-900 title-font">
-    <a [routerLink]="['/product-details', product.id]">
-      {{product.title | slice:0:30}}</a>
-  </h2>
-  <p class="mt-1">{{product.price | currency}}</p>
+  <div class="mt-4">
+    <h3 class="mb-1 text-xs tracking-widest text-gray-500 title-font">
+      {{ product.category }}
+    </h3>
+    <h2 class="text-lg font-medium text-gray-900 title-font">
+      <a [routerLink]="['/product-details', (product.id)]">
+        {{ product.title | slice: 0 : 30 }}</a>
+    </h2>
+    <div class="flex items-center justify-between mt-1">
+      <p class="">{{ product.price | currency }}</p>
+      <button class="px-2 py-1 text-white bg-orange-500 rounded hover:bg-orange-700">
+        Add to cart
+      </button>
+    </div>
+  </div>
 </div>
