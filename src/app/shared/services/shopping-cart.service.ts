@@ -2,33 +2,51 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
 import { ToastrService } from 'ngx-toastr';
 
+/* const mockItem = {
+  discount: true,
+  id: 4,
+  title: 'Another Product',
+  price: '40.99',
+  description: 'Product description here.',
+  category: 'category here',
+  image: 'image-url-here',
+  subTotal: 40.99,
+  rating: {
+    rate: 3.9,
+    count: 100,
+  },
+  qty: 1,
+}; */
+
 interface ShoppingCart {
   items: Product[];
   totalAmount: number;
   productsCount: number;
 }
-const initialShoppingCart: ShoppingCart = {
-  items: [],
-  totalAmount: 0,
-  productsCount: 0,
-};
+
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
-  private readonly toastr = inject(ToastrService);
+  shoppingCart = signal<ShoppingCart>({
+    items: [],
+    totalAmount: 0,
+    productsCount: 0,
+  });
 
-  shoppingCart = signal<ShoppingCart>(initialShoppingCart);
+  private readonly toastr = inject(ToastrService);
+  /*   private subTotal = computed(() =>
+    this.shoppingCart().items.reduce((a, b) => a + b.qty * Number(b.price), 0),
+  ); */
 
   // Generic
   addItem(item: Product): void {
     item.qty = 1;
 
     this.shoppingCart.update((currentCart: ShoppingCart): ShoppingCart => {
-      const isProductInCart = currentCart.items.find(
-        (itemCart: Product) => itemCart.id === item.id,
-      );
+      const isProductInCart = this.isProductInCart(item.id, currentCart.items);
 
       if (isProductInCart) {
         isProductInCart.qty += 1;
+
         isProductInCart.subTotal =
           isProductInCart.qty * Number(isProductInCart.price);
       } else {
@@ -42,8 +60,38 @@ export class ShoppingCartService {
     this.toastr.success('Product added!!', 'DOMINI STORE');
   }
 
+  removeItem(productId: number) {
+    this.shoppingCart.update((currentCart) => {
+      const isProductInCart = this.isProductInCart(
+        productId,
+        currentCart.items,
+      );
+
+      if (isProductInCart) {
+        currentCart.totalAmount -= +isProductInCart.price * isProductInCart.qty;
+        currentCart.productsCount -= isProductInCart.qty;
+
+        currentCart.items = currentCart.items.filter(
+          (item: Product) => item.id !== productId,
+        );
+      }
+      this.toastr.success('Item removed!', 'DOMINI STORE');
+      return currentCart;
+    });
+  }
+
   clearShoppingCart(): void {
-    this.shoppingCart.set(initialShoppingCart);
-    this.toastr.success('Shopping cart empty!', 'DOMINI STORE');
+    this.shoppingCart.set({
+      items: [],
+      totalAmount: 0,
+      productsCount: 0,
+    });
+    // this.toastr.success('Shopping cart empty!', 'DOMINI STORE');
+  }
+  private isProductInCart(
+    productId: number,
+    items: Product[],
+  ): Product | undefined {
+    return items.find((item: Product) => item.id === productId);
   }
 }

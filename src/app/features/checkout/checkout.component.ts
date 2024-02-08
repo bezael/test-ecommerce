@@ -12,4 +12,12 @@ import { ShoppingCartService } from '@shared/services/shopping-cart.service';
 export class CheckoutComponent {
   private readonly shoppingCartSvc = inject(ShoppingCartService);
   shoppingCart = this.shoppingCartSvc.shoppingCart;
+
+  removeItem(productId: number): void {
+    this.shoppingCartSvc.removeItem(productId);
+  }
+
+  clearAll(): void {
+    this.shoppingCartSvc.clearShoppingCart();
+  }
 }

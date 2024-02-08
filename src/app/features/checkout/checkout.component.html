@@ -5,6 +5,11 @@
     </div>
     <div class="w-full mx-auto overflow-auto lg:w-2/3">
       @if(shoppingCart().productsCount) {
+      <div class="flex justify-end p-2">
+        <button (click)="clearAll()"
+          class="flex px-8 py-2 text-lg text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Clear
+          all</button>
+      </div>
       <table class="w-full text-left whitespace-no-wrap table-auto">
         <thead>
           <tr>
@@ -13,6 +18,7 @@
               Name</th>
             <th class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Qty</th>
             <th class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Price</th>
+            <th class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font"></th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +27,12 @@
             <td class="px-4 py-3">{{item.title}}</td>
             <td class="px-4 py-3">{{item.qty}}</td>
             <td class="px-4 py-3 text-lg text-gray-900">{{item.price | currency}}</td>
+            <td>
+              <button (click)="removeItem(item.id)"
+                class="flex px-2 text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">
+                X
+              </button>
+            </td>
           </tr>
           }
           <!-- @empty {
@@ -29,7 +41,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="3">
+            <td colspan="4">
               <hr class="border-gray-900 border-t-1" />
             </td>
           </tr>
@@ -42,7 +54,6 @@
         </tfoot>
       </table>
       } @else {
-
       <div class="flex flex-col w-full mb-20 text-center">
         <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">The shopping cart is empty</h3>
       </div>
