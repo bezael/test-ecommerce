@@ -15,6 +15,12 @@ export const routes: Routes = [
         (c) => c.DetailsComponent,
       ),
   }, // should be child route // NO la creees ahora
-  /* { path: 'cart', component: CartComponent }, */
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./features/checkout/checkout.component').then(
+        (c) => c.CheckoutComponent,
+      ),
+  },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
 ];
