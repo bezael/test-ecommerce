@@ -42,7 +42,7 @@ export class DetailsComponent implements OnInit {
   }
 
   onAddToCart() {
-    this.shoppingCartSvc.addItemToShoppingCart(this.product() as Product);
+    this.shoppingCartSvc.addItem(this.product() as Product);
   }
 
   getStarSVG(index: number): SafeHtml {

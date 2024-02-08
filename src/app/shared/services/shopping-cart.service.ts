@@ -2,24 +2,24 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
 import { ToastrService } from 'ngx-toastr';
 
-export interface ShoppingCart {
+interface ShoppingCart {
   items: Product[];
   totalAmount: number;
   productsCount: number;
 }
-
+const initialShoppingCart: ShoppingCart = {
+  items: [],
+  totalAmount: 0,
+  productsCount: 0,
+};
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
   private readonly toastr = inject(ToastrService);
 
-  shoppingCart = signal<ShoppingCart>({
-    items: [],
-    totalAmount: 0,
-    productsCount: 0,
-  });
+  shoppingCart = signal<ShoppingCart>(initialShoppingCart);
 
   // Generic
-  addItemToShoppingCart(item: Product): void {
+  addItem(item: Product): void {
     item.qty = 1;
 
     this.shoppingCart.update((currentCart: ShoppingCart): ShoppingCart => {
@@ -40,10 +40,10 @@ export class ShoppingCartService {
       return currentCart;
     });
     this.toastr.success('Product added!!', 'DOMINI STORE');
-    // console.log('currentCart', this.shoppingCart());
   }
 
-  removeItemFromShoppingCart() {}
-  calculateTotal() {}
-  clearShoppingCart() {}
+  clearShoppingCart(): void {
+    this.shoppingCart.set(initialShoppingCart);
+    this.toastr.success('Shopping cart empty!', 'DOMINI STORE');
+  }
 }

@@ -20,6 +20,6 @@ export class ProductsComponent {
   shoppingCart = this.shoppingCartSvc.shoppingCart;
 
   onAddToCart(product: Product): void {
-    this.shoppingCartSvc.addItemToShoppingCart(product);
+    this.shoppingCartSvc.addItem(product);
   }
 }
