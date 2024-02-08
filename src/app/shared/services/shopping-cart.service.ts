@@ -1,5 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
+import { ToastrService } from 'ngx-toastr';
 
 export interface ShoppingCart {
   items: Product[];
@@ -9,6 +10,8 @@ export interface ShoppingCart {
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
+  private readonly toastr = inject(ToastrService);
+
   shoppingCart = signal<ShoppingCart>({
     items: [],
     totalAmount: 0,
@@ -36,8 +39,8 @@ export class ShoppingCartService {
       currentCart.productsCount += item.qty;
       return currentCart;
     });
-
-    console.log('currentCart', this.shoppingCart());
+    this.toastr.success('Product added!!', 'DOMINI STORE');
+    // console.log('currentCart', this.shoppingCart());
   }
 
   removeItemFromShoppingCart() {}
