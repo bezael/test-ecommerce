@@ -18,7 +18,7 @@
 
         <div class="flex">
           <span class="text-2xl font-medium text-gray-900 title-font">{{product()?.price | currency}}</span>
-          <button
+          <button (click)="onAddToCart()"
             class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-700">Add
             to cart</button>
         </div>

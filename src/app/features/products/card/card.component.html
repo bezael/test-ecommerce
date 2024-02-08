@@ -14,7 +14,7 @@
     </h2>
     <div class="flex items-center justify-between mt-1">
       <p class="">{{ product.price | currency }}</p>
-      <button class="px-2 py-1 text-white bg-orange-500 rounded hover:bg-orange-700">
+      <button (click)="onAddToCart()" class="px-2 py-1 text-white bg-orange-500 rounded hover:bg-orange-700">
         Add to cart
       </button>
     </div>

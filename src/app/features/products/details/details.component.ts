@@ -12,6 +12,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ProductsService } from '@api/products.service';
 import { Product } from '@shared/models/product.interface';
+import { ShoppingCartService } from '@shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-details',
@@ -29,10 +30,19 @@ export class DetailsComponent implements OnInit {
   private readonly injector = inject(EnvironmentInjector);
   private readonly sanitizer = inject(DomSanitizer);
 
+  private readonly shoppingCartSvc = inject(ShoppingCartService);
+  shoppingCart = this.shoppingCartSvc.shoppingCart;
+
   ngOnInit(): void {
     runInInjectionContext(this.injector, () => {
-      this.product = toSignal(this.productSvc.getProductById(this.productId));
+      this.product = toSignal<Product>(
+        this.productSvc.getProductById(this.productId),
+      );
     });
+  }
+
+  onAddToCart() {
+    this.shoppingCartSvc.addItemToShoppingCart(this.product() as Product);
   }
 
   getStarSVG(index: number): SafeHtml {
