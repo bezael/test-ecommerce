@@ -13,6 +13,8 @@ export class CheckoutComponent {
   private readonly shoppingCartSvc = inject(ShoppingCartService);
   shoppingCart = this.shoppingCartSvc.shoppingCart;
 
+  onProceedToPay(): void {}
+
   removeItem(productId: number): void {
     this.shoppingCartSvc.removeItem(productId);
   }

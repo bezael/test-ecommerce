@@ -24,6 +24,18 @@ interface ShoppingCart {
   productsCount: number;
 }
 
+/* export interface Cart {
+  items: Array<CartItem>;
+}
+
+export interface CartItem {
+  product: string;
+  name: string;
+  price: number;
+  quantity: number;
+  id: number;
+} */
+
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
   shoppingCart = signal<ShoppingCart>({

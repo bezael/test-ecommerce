@@ -3,8 +3,8 @@
     <div class="flex flex-col w-full mb-20 text-center">
       <h1 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">Checkout page</h1>
     </div>
+    @if(shoppingCart().productsCount) {
     <div class="w-full mx-auto overflow-auto lg:w-2/3">
-      @if(shoppingCart().productsCount) {
       <div class="flex justify-end p-2">
         <button (click)="clearAll()"
           class="flex px-8 py-2 text-lg text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Clear
@@ -35,9 +35,7 @@
             </td>
           </tr>
           }
-          <!-- @empty {
-          <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">The shopping cart is empty</h3>
-          } -->
+
         </tbody>
         <tfoot>
           <tr>
@@ -53,21 +51,15 @@
           </tr>
         </tfoot>
       </table>
-      } @else {
-      <div class="flex flex-col w-full mb-20 text-center">
-        <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">The shopping cart is empty</h3>
-      </div>
-      }
     </div>
-    <!--     <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
-      <a class="inline-flex items-center text-indigo-500 md:mb-2 lg:mb-0">Learn More
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
-      </a>
-      <button
-        class="flex px-6 py-2 ml-auto text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Button</button>
-    </div> -->
+    <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
+      <button (click)="onProceedToPay()"
+        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-600">Pay</button>
+    </div>
+    } @else {
+    <div class="flex flex-col w-full mb-20 text-center">
+      <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">The shopping cart is empty</h3>
+    </div>
+    }
   </div>
 </section>
