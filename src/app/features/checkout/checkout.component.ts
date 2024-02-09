@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { CheckoutService } from '@features/checkout/services/checkout.service';
 import { ShoppingCartService } from '@shared/services/shopping-cart.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class CheckoutComponent {
   private readonly shoppingCartSvc = inject(ShoppingCartService);
   shoppingCart = this.shoppingCartSvc.shoppingCart;
 
-  onProceedToPay(): void {}
+  private readonly checkoutSvc = inject(CheckoutService);
+
+  onProceedToPay(): void {
+    this.checkoutSvc.onProceedToPay(this.shoppingCart().items);
+  }
 
   removeItem(productId: number): void {
     this.shoppingCartSvc.removeItem(productId);
