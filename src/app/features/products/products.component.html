@@ -1,13 +1,8 @@
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
-      <!--       <pre>
-      {{shoppingCart() | json }}
-      </pre> -->
       @for (product of products(); track product.id) {
       <app-card (addToCartEvent)="onAddToCart($event)" class="w-full p-4 lg:w-1/4 md:w-1/2 " [product]="product" />
-      } @empty {
-      <div>loading...</div>
       }
     </div>
   </div>

@@ -8,6 +8,7 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
+import { SpinnerInterceptor } from '@shared/interceptors/spinner.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 
@@ -21,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
       withFetch(),
-      withInterceptors([ErrorResponseInterceptor]),
+      withInterceptors([ErrorResponseInterceptor, SpinnerInterceptor]),
     ),
   ],
 };
