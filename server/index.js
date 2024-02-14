@@ -6,10 +6,7 @@ const bodyparser = require("body-parser");
 const app = express();
 app.use(express.static('public'));
 
-/* app.use(bodyparser.urlencoded({ extended: false }));*/
 app.use(bodyparser.json());
-// app.use(cors({ origin: true, credentials: true }));
-
 
 const YOUR_DOMAIN = 'http://localhost:4242';
 
