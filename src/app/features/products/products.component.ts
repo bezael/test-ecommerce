@@ -1,5 +1,5 @@
-import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { ProductsService } from '@api/products.service';
 import { CardComponent } from '@features/products/card/card.component';
 import { Product } from '@shared/models/product.interface';
@@ -8,7 +8,7 @@ import { ShoppingCartService } from '@shared/services/shopping-cart.service';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CardComponent, JsonPipe],
+  imports: [CardComponent, RouterOutlet],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })

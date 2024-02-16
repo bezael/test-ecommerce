@@ -21,7 +21,7 @@ export class ProductsService {
 
   private getProducts(): void {
     this._http
-      .get<Product[]>(this._endPoint)
+      .get<Product[]>(`${this._endPoint}?sort=desc`)
       .pipe(tap((data: Product[]) => this.products.set(data)))
       .subscribe();
   }

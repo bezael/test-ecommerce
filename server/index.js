@@ -2,10 +2,10 @@
 const stripe = require('stripe')('sk_test_FFy7VeYQS3mbHjq0zriKKidX');
 const express = require('express');
 const bodyparser = require("body-parser");
-// const cors = require('cors');
+const cors = require('cors');
 const app = express();
 app.use(express.static('public'));
-
+app.use(cors());
 app.use(bodyparser.json());
 
 const YOUR_DOMAIN = 'http://localhost:4242';
