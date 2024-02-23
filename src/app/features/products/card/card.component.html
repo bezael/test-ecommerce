@@ -12,8 +12,8 @@
       <a [routerLink]="['/product-details', (product.id)]">
         {{ product.title | slice: 0 : 30 }}</a>
     </h2>
-    <div class="flex items-center justify-between mt-1 font-bold text-orange-500">
-      <p class="">{{ product.price | currency }}</p>
+    <div class="flex items-center justify-between mt-1">
+      <p class="font-bold text-orange-500">{{ product.price | currency }}</p>
       <button (click)="onAddToCart()" class="px-2 py-1 text-white bg-orange-500 rounded hover:bg-orange-700">
         Add to cart
       </button>

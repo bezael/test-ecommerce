@@ -14,7 +14,7 @@ export const routes: Routes = [
       import('./features/products/details/details.component').then(
         (c) => c.DetailsComponent,
       ),
-  }, // should be child route // NO la creees ahora
+  },
   {
     path: 'checkout',
     loadComponent: () =>
