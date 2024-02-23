@@ -2,39 +2,11 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
 import { ToastrService } from 'ngx-toastr';
 
-/* const mockItem = {
-  discount: true,
-  id: 4,
-  title: 'Another Product',
-  price: '40.99',
-  description: 'Product description here.',
-  category: 'category here',
-  image: 'image-url-here',
-  subTotal: 40.99,
-  rating: {
-    rate: 3.9,
-    count: 100,
-  },
-  qty: 1,
-}; */
-
 interface ShoppingCart {
   items: Product[];
   totalAmount: number;
   productsCount: number;
 }
-
-/* export interface Cart {
-  items: Array<CartItem>;
-}
-
-export interface CartItem {
-  product: string;
-  name: string;
-  price: number;
-  quantity: number;
-  id: number;
-} */
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
@@ -98,7 +70,6 @@ export class ShoppingCartService {
       totalAmount: 0,
       productsCount: 0,
     });
-    // this.toastr.success('Shopping cart empty!', 'DOMINI STORE');
   }
   private isProductInCart(
     productId: number,

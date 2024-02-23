@@ -19,7 +19,6 @@ import { ShoppingCartService } from '@shared/services/shopping-cart.service';
   standalone: true,
   imports: [CurrencyPipe, CommonModule],
   templateUrl: './details.component.html',
-  styleUrl: './details.component.scss',
 })
 export class DetailsComponent implements OnInit {
   starsArray: number[] = new Array(5).fill(0);

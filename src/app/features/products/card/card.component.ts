@@ -18,7 +18,6 @@ function addDiscountProperty(product: any) {
   standalone: true,
   imports: [RouterLink, CurrencyPipe, SlicePipe],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
