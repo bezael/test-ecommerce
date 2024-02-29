@@ -17,11 +17,7 @@ export class ShoppingCartService {
   });
 
   private readonly toastr = inject(ToastrService);
-  /*   private subTotal = computed(() =>
-    this.shoppingCart().items.reduce((a, b) => a + b.qty * Number(b.price), 0),
-  ); */
 
-  // Generic
   addItem(item: Product): void {
     item.qty = 1;
 

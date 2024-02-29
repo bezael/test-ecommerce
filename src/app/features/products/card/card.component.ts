@@ -1,4 +1,4 @@
-import { CurrencyPipe, SlicePipe } from '@angular/common';
+import { CurrencyPipe, JsonPipe, SlicePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +16,7 @@ function addDiscountProperty(product: any) {
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, SlicePipe],
+  imports: [RouterLink, CurrencyPipe, SlicePipe, JsonPipe],
   templateUrl: './card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

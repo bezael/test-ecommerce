@@ -12,7 +12,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ProductsService } from '@api/products.service';
 import { Product } from '@shared/models/product.interface';
-import { ShoppingCartService } from '@shared/services/shopping-cart.service';
+import { CartStore } from 'app/store/shopping-cart.store';
 
 @Component({
   selector: 'app-details',
@@ -22,6 +22,7 @@ import { ShoppingCartService } from '@shared/services/shopping-cart.service';
 })
 export class DetailsComponent implements OnInit {
   starsArray: number[] = new Array(5).fill(0);
+  cartStore = inject(CartStore);
 
   @Input({ alias: 'id' }) productId!: number;
   public product!: Signal<Product | undefined>;
@@ -29,8 +30,8 @@ export class DetailsComponent implements OnInit {
   private readonly injector = inject(EnvironmentInjector);
   private readonly sanitizer = inject(DomSanitizer);
 
-  private readonly shoppingCartSvc = inject(ShoppingCartService);
-  shoppingCart = this.shoppingCartSvc.shoppingCart;
+  /*   private readonly shoppingCartSvc = inject(ShoppingCartService);
+  shoppingCart = this.shoppingCartSvc.shoppingCart; */
 
   ngOnInit(): void {
     runInInjectionContext(this.injector, () => {
@@ -41,7 +42,8 @@ export class DetailsComponent implements OnInit {
   }
 
   onAddToCart() {
-    this.shoppingCartSvc.addItem(this.product() as Product);
+    //  this.shoppingCartSvc.addItem(this.product() as Product);
+    this.cartStore.addToCart(this.product() as Product); // Check this type
   }
 
   getStarSVG(index: number): SafeHtml {
