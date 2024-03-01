@@ -1,5 +1,4 @@
 import { computed, inject } from '@angular/core';
-import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
@@ -7,10 +6,9 @@ import {
   withMethods,
   withState,
 } from '@ngrx/signals';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { Product } from '@shared/models/product.interface';
 import { ToastrService } from 'ngx-toastr';
-import { pipe } from 'rxjs';
+
 export interface CartState {
   products: Product[];
   totalAmount: number;
@@ -32,45 +30,32 @@ export const CartStore = signalStore(
   })),
   withMethods(({ products, ...store }, toastrSvc = inject(ToastrService)) => ({
     addToCart(product: Product) {
-      patchState(store, { products: [...products(), product] });
+      const isProductInCart = products().find(
+        (item: Product) => item.id === product.id,
+      );
+
+      if (isProductInCart) {
+        isProductInCart.qty += 1;
+        isProductInCart.subTotal =
+          isProductInCart.qty * Number(isProductInCart.price);
+        patchState(store, { products: [...products()] });
+      } else {
+        patchState(store, { products: [...products(), product] });
+      }
       toastrSvc.success('Product added!!', 'DOMINI STORE');
     },
     removeItem(id: number) {
-      const updatedProduct = products().filter((a) => a.id !== id);
-      patchState(store, { products: updatedProduct });
-      toastrSvc.info('Product removed!!', 'DOMINI STORE');
+      const isProductInCart = products().find(
+        (item: Product) => item.id === id,
+      );
+
+      if (isProductInCart) {
+        const updatedProduct = products().filter((a) => a.id !== id);
+        patchState(store, { products: updatedProduct });
+        toastrSvc.info('Product removed!!', 'DOMINI STORE');
+      }
     },
-    addToCartOLD: rxMethod<any>(
-      pipe(
-        tapResponse({
-          next: (product: Product) => {
-            patchState(store, { products: [...products(), product] });
-            toastrSvc.success('Product added!!', 'DOMINI STORE');
-          },
-          error: () =>
-            toastrSvc.error(
-              'Something went wrong adding to cart',
-              'DOMINI STORE',
-            ),
-        }),
-      ),
-    ),
-    removeItemOLd: rxMethod<any>(
-      pipe(
-        tapResponse({
-          next: (id: number) => {
-            const updatedProduct = products().filter((a) => a.id !== id);
-            patchState(store, { products: updatedProduct });
-            toastrSvc.info('Product removed!!', 'DOMINI STORE');
-          },
-          error: () =>
-            toastrSvc.error(
-              'Something went wrong removing from cart',
-              'DOMINI STORE',
-            ),
-        }),
-      ),
-    ),
+
     clearCart() {
       patchState(store, initialCartState);
       toastrSvc.info('All Products removed!!', 'DOMINI STORE');
@@ -80,7 +65,7 @@ export const CartStore = signalStore(
 
 function calculateTotalPrice(products: Product[]): number {
   return products.reduce(
-    (total, product) => total + Number(product.price) * product.qty,
+    (acc, product) => acc + Number(product.price) * product.qty,
     0,
   );
 }

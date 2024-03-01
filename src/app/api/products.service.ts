@@ -1,8 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
+import {
+  EnvironmentInjector,
+  Injectable,
+  inject,
+  runInInjectionContext,
+  signal,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '@envs/environment';
 import { Product } from '@shared/models/product.interface';
-import { Observable, map, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
@@ -10,13 +17,18 @@ export class ProductsService {
 
   private readonly _http = inject(HttpClient);
   private readonly _endPoint = environment.apiURL;
+  private readonly _injector = inject(EnvironmentInjector);
 
   constructor() {
     this.getProducts();
   }
 
-  getProductById(productId: number): Observable<Product> {
-    return this._http.get<Product>(`${this._endPoint}/${productId}`);
+  getProductById(productId: number) {
+    return runInInjectionContext(this._injector, () =>
+      toSignal<Product>(
+        this._http.get<Product>(`${this._endPoint}/${productId}`),
+      ),
+    );
   }
 
   private getProducts(): void {

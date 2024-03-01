@@ -3,8 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
   Output,
+  input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '@shared/models/product.interface';
@@ -21,10 +21,11 @@ function addDiscountProperty(product: any) {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
-  @Input({ required: true, transform: addDiscountProperty }) product!: Product;
+  // @Input({ required: true, transform: addDiscountProperty }) product!: Product;
+  product = input.required<Product>();
   @Output() addToCartEvent = new EventEmitter<Product>();
 
   onAddToCart(): void {
-    this.addToCartEvent.emit(this.product);
+    this.addToCartEvent.emit(this.product());
   }
 }

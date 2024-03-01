@@ -1,14 +1,5 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import {
-  Component,
-  EnvironmentInjector,
-  Input,
-  OnInit,
-  Signal,
-  inject,
-  runInInjectionContext,
-} from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, Input, OnInit, Signal, inject } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ProductsService } from '@api/products.service';
 import { Product } from '@shared/models/product.interface';
@@ -25,20 +16,25 @@ export class DetailsComponent implements OnInit {
   cartStore = inject(CartStore);
 
   @Input({ alias: 'id' }) productId!: number;
+  // productId = input<number>(0, { alias: 'id' });
   public product!: Signal<Product | undefined>;
+  // public product = signal<Product | undefined>(undefined);
   private readonly productSvc = inject(ProductsService);
-  private readonly injector = inject(EnvironmentInjector);
+  // private readonly injector = inject(EnvironmentInjector);
   private readonly sanitizer = inject(DomSanitizer);
 
   /*   private readonly shoppingCartSvc = inject(ShoppingCartService);
   shoppingCart = this.shoppingCartSvc.shoppingCart; */
 
   ngOnInit(): void {
-    runInInjectionContext(this.injector, () => {
+    // this.product.set(this.productSvc.getProductById(this.productId));
+    this.product = this.productSvc.getProductById(this.productId);
+
+    /*    runInInjectionContext(this.injector, () => {
       this.product = toSignal<Product>(
         this.productSvc.getProductById(this.productId),
       );
-    });
+    }); */
   }
 
   onAddToCart() {
