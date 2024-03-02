@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CheckoutService {
   private readonly _http = inject(HttpClient);
-  private readonly _url = environment.serverURL;
+  private readonly _url = environment.SERVER_URL;
 
   onProceedToPay(items: Product[]) {
     return this._http

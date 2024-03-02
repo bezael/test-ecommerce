@@ -9,7 +9,9 @@
         <div class="flex mb-4">
           <span class="flex items-center">
             @for (star of starsArray; track index; let index = $index) {
-            <span *ngIf="product()?.rating?.rate" [innerHTML]="getStarSVG(index)"></span>
+            @if (product()?.rating?.rate) {
+            <span [innerHTML]="getStarSVG(index)"></span>
+            }
             }
             <span class="ml-3 text-gray-600">{{product()?.rating?.count}} reviews</span>
           </span>

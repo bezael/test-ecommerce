@@ -1,45 +1,31 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
-import { Component, Input, OnInit, Signal, inject } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ProductsService } from '@api/products.service';
+import { ProductsService } from '@features/products/products.service';
 import { Product } from '@shared/models/product.interface';
 import { CartStore } from 'app/store/shopping-cart.store';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CurrencyPipe, CommonModule],
+  imports: [CurrencyPipe],
   templateUrl: './details.component.html',
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent {
   starsArray: number[] = new Array(5).fill(0);
   cartStore = inject(CartStore);
 
-  @Input({ alias: 'id' }) productId!: number;
-  // productId = input<number>(0, { alias: 'id' });
-  public product!: Signal<Product | undefined>;
-  // public product = signal<Product | undefined>(undefined);
+  productId = input<number>(0, { alias: 'id' });
+
+  product = computed(() =>
+    this.productSvc.products()?.find(({ id }) => id == this.productId()),
+  );
+
   private readonly productSvc = inject(ProductsService);
-  // private readonly injector = inject(EnvironmentInjector);
   private readonly sanitizer = inject(DomSanitizer);
 
-  /*   private readonly shoppingCartSvc = inject(ShoppingCartService);
-  shoppingCart = this.shoppingCartSvc.shoppingCart; */
-
-  ngOnInit(): void {
-    // this.product.set(this.productSvc.getProductById(this.productId));
-    this.product = this.productSvc.getProductById(this.productId);
-
-    /*    runInInjectionContext(this.injector, () => {
-      this.product = toSignal<Product>(
-        this.productSvc.getProductById(this.productId),
-      );
-    }); */
-  }
-
   onAddToCart() {
-    //  this.shoppingCartSvc.addItem(this.product() as Product);
-    this.cartStore.addToCart(this.product() as Product); // Check this type
+    this.cartStore.addToCart(this.product() as Product);
   }
 
   getStarSVG(index: number): SafeHtml {

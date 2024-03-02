@@ -13,7 +13,4 @@ import { CartStore } from 'app/store/shopping-cart.store';
 export class HeaderComponent {
   showCart = signal<boolean>(false);
   cartStore = inject(CartStore);
-  /* 
-  private readonly shoppingCartSvc = inject(ShoppingCartService);
-  shoppingCart = this.shoppingCartSvc.shoppingCart; */
 }

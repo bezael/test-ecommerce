@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { CheckoutService } from '@features/checkout/services/checkout.service';
+import { CheckoutService } from '@features/checkout/checkout.service';
 import { CartStore } from 'app/store/shopping-cart.store';
 
 @Component({
