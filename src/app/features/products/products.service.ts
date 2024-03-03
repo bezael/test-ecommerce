@@ -28,6 +28,6 @@ export class ProductsService extends APIService {
     return this.get<Product[]>(this._endPoint);
   }
   private _addPropertyQTY(products: Product[]): Product[] {
-    return products.map((product) => ({ ...product, qty: 1 }));
+    return products.map((product) => ({ ...product, quantity: 1 }));
   }
 }
