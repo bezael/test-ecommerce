@@ -8,15 +8,24 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '@shared/models/product.interface';
+import { AddToCartComponent } from '@shared/ui/add-to-cart/add-to-cart.component';
+import { QuantityComponent } from '@shared/ui/quantity/quantity.component';
 
-function addDiscountProperty(product: any) {
+/* function addDiscountProperty(product: any) {
   return { discount: false, ...product };
-}
+} */
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe, SlicePipe, JsonPipe],
+  imports: [
+    RouterLink,
+    QuantityComponent,
+    AddToCartComponent,
+    CurrencyPipe,
+    SlicePipe,
+    JsonPipe,
+  ],
   templateUrl: './card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -25,7 +34,7 @@ export class CardComponent {
   product = input.required<Product>();
   @Output() addToCartEvent = new EventEmitter<Product>();
 
-  onAddToCart(): void {
+  public onAddToCart(): void {
     this.addToCartEvent.emit(this.product());
   }
 }

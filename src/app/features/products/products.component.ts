@@ -29,7 +29,7 @@ export class ProductsComponent {
   private readonly productSvc = inject(ProductsService);
   products = this.productSvc.products;
 
-  onAddToCart(product: Product): void {
+  public onAddToCart(product: Product): void {
     this.cartStore.addToCart(product);
   }
 }

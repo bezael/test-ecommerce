@@ -5,7 +5,7 @@
     </div>
     @if(cartStore.productsCount()) {
     <div class="w-full mx-auto overflow-auto lg:w-2/3">
-      <div class="flex justify-end p-2">
+      <div class="flex justify-end mb-4">
         <button (click)="clearAll()"
           class="flex px-8 py-2 text-lg text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">Clear
           all</button>
@@ -14,24 +14,27 @@
         <thead>
           <tr>
             <th
-              class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 rounded-tl rounded-bl title-font">
+              class="px-2 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 rounded-tl rounded-bl title-font">
               Name</th>
-            <th class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Qty</th>
-            <th class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Price</th>
-            <th class="px-4 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font"></th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Qty</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Price</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">&nbsp;</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          @for (item of cartStore.products(); track $index) {
-          <tr>
-            <td class="px-4 py-3">{{item.title}}</td>
-            <td class="px-4 py-3">{{item.qty}}</td>
-            <td class="px-4 py-3 text-lg text-gray-900">{{item.price | currency}}</td>
+          @for (product of cartStore.products(); track $index) {
+          <tr class="border-b border-gray-200">
+            <td class="py-3">{{product.title | slice:0:40}}...</td>
+            <td class="py-3"><app-quantity [product]="product" /></td>
+            <td class="py-3 text-lg font-semibold text-gray-900">{{ product.subTotal || product.price | currency}}</td>
             <td>
-              <button (click)="removeItem(item.id)"
-                class="flex px-2 text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-red-600">
-                X
-              </button>
+              <app-remove-product (onClickRemoveProduct)="onRemoveProduct(product.id)"
+                class="flex items-center px-2 py-1 pl-0 space-x-2 text-orange-500 cursor-pointer" />
+            </td>
+            <td>
+              <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite(product.id)" [isDesired]="product?.isDesired"
+                class="flex items-center px-2 py-1 pl-0 mr-2 space-x-2 text-orange-500 cursor-pointer" />
             </td>
           </tr>
           }
@@ -39,23 +42,20 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="4">
-              <hr class="border-gray-900 border-t-1" />
-            </td>
-          </tr>
-          <tr>
             <td colspan="2">Total:</td>
-            <td class="px-4 py-3 text-lg not-italic font-bold text-gray-900">{{cartStore.totalAmount() |
+            <td colspan="4" class="py-3 text-lg not-italic font-bold text-gray-900">{{cartStore.totalAmount() |
               currency}}
             </td>
           </tr>
         </tfoot>
       </table>
+      <div class="flex justify-end w-full p-2">
+        <button (click)="onProceedToPay()"
+          class="flex px-8 py-2 text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-700">Pay
+          now</button>
+      </div>
     </div>
-    <div class="flex w-full pl-4 mx-auto mt-4 lg:w-2/3">
-      <button (click)="onProceedToPay()"
-        class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-600">Pay</button>
-    </div>
+
     } @else {
     <div class="flex flex-col w-full mb-20 text-center">
       <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">The shopping cart is empty</h3>

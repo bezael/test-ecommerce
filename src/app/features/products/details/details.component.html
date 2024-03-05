@@ -1,29 +1,32 @@
-<section class="overflow-hidden text-gray-600 body-font">
+<section class="overflow-hidden text-slate-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap mx-auto lg:w-4/5">
       <img alt="{{product()?.title}}" class="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto"
         src="{{product()?.image}}">
       <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
-        <h2 class="text-sm tracking-widest text-gray-500 title-font">{{product()?.category}}</h2>
-        <h1 class="mb-1 text-3xl font-medium text-gray-900 title-font">{{product()?.title}}</h1>
-        <div class="flex mb-4">
-          <span class="flex items-center">
+        <h2 class="text-sm tracking-widest title-font">{{product()?.category}}</h2>
+        <h1 class="mb-1 text-3xl font-medium text-slate-900 title-font">{{product()?.title}}</h1>
+        <div class="flex items-center justify-between my-4">
+          <div class="flex items-center">
             @for (star of starsArray; track index; let index = $index) {
             @if (product()?.rating?.rate) {
             <span [innerHTML]="getStarSVG(index)"></span>
             }
             }
-            <span class="ml-3 text-gray-600">{{product()?.rating?.count}} reviews</span>
-          </span>
+            <span class="ml-3">{{product()?.rating?.count}} reviews</span>
+          </div>
         </div>
-        <p class="mt-6 mb-5 leading-relaxed ">{{product()?.description}}</p>
-
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center">
+            <app-wishlist (onClickStarEvent)="addOrRemoveFavorite()" [isDesired]="product()?.isDesired"
+              class="mr-2 cursor-pointer" />
+            <span>Wishlist</span>
+          </div>
+        </div>
+        <p class="mt-6 mb-5 leading-relaxed">{{product()?.description}}</p>
         <div class="flex">
-          <span class="text-2xl font-bold text-orange-500 ">{{product()?.price |
-            currency}}</span>
-          <button (click)="onAddToCart()"
-            class="flex px-6 py-2 ml-auto text-white bg-orange-500 border-0 rounded focus:outline-none hover:bg-orange-700">Add
-            to cart</button>
+          <span class="text-2xl font-bold text-orange-500">{{product()?.price | currency}}</span>
+          <app-add-to-cart class="ml-auto" (addToCartEvent)="onAddToCart()" />
         </div>
       </div>
     </div>

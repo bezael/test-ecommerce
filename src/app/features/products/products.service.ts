@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { APIService } from '@api/api.service';
 import { Product } from '@shared/models/product.interface';
-import { Observable, map, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService extends APIService {
@@ -18,16 +18,17 @@ export class ProductsService extends APIService {
   public getAllProducts(): void {
     this.get<Product[]>(`${this._endPoint}?sort=desc`)
       .pipe(
-        map((products: Product[]) => this._addPropertyQTY(products)),
+        map((products: Product[]) => this._addProperties(products)),
         tap((products: Product[]) => this.products.set(products)),
       )
       .subscribe();
   }
 
-  getAll(): Observable<Product[]> {
-    return this.get<Product[]>(this._endPoint);
-  }
-  private _addPropertyQTY(products: Product[]): Product[] {
-    return products.map((product) => ({ ...product, quantity: 1 }));
+  private _addProperties(products: Product[]): Product[] {
+    return products.map((product) => ({
+      ...product,
+      quantity: 0,
+      isDesired: false,
+    }));
   }
 }

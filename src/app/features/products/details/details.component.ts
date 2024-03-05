@@ -3,19 +3,21 @@ import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ProductsService } from '@features/products/products.service';
 import { Product } from '@shared/models/product.interface';
+import { AddToCartComponent } from '@shared/ui/add-to-cart/add-to-cart.component';
+import { WishlistProductComponent } from '@shared/ui/wishlist/wishlist-product.component';
 import { CartStore } from 'app/store/shopping-cart.store';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [AddToCartComponent, WishlistProductComponent, CurrencyPipe],
   templateUrl: './details.component.html',
 })
 export class DetailsComponent {
   starsArray: number[] = new Array(5).fill(0);
   cartStore = inject(CartStore);
 
-  productId = input<number>(0, { alias: 'id' });
+  productId = input.required<number>({ alias: 'id' });
 
   product = computed(() =>
     this.productSvc.products()?.find(({ id }) => id == this.productId()),
@@ -28,6 +30,9 @@ export class DetailsComponent {
     this.cartStore.addToCart(this.product() as Product);
   }
 
+  addOrRemoveFavorite() {}
+
+  // TODO: Por Dios refactorizar esto
   getStarSVG(index: number): SafeHtml {
     let svgContent = null;
     const rate = this.product()?.rating?.rate as number;
