@@ -13,7 +13,7 @@ import { CartStore } from 'app/store/shopping-cart.store';
   imports: [AddToCartComponent, WishlistProductComponent, CurrencyPipe],
   templateUrl: './details.component.html',
 })
-export class DetailsComponent {
+export default class DetailsComponent {
   starsArray: number[] = new Array(5).fill(0);
   cartStore = inject(CartStore);
 

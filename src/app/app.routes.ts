@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/products/products.routes'),
   },
   {
+    path: 'categories',
+    loadChildren: () => import('./features/categories/categories.routes'),
+  },
+  {
     path: 'checkout',
     loadComponent: () =>
       import('./features/checkout/checkout.component').then(

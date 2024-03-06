@@ -34,6 +34,14 @@ export class CheckoutComponent {
     this.cartStore.clearCart();
   }
 
+  updateQuantity(action: string, productId: number): void {
+    if (action === 'DECREMENT') {
+      this.cartStore.decrement(productId);
+    } else if (action === 'INCREMENT') {
+      this.cartStore.increment(productId);
+    }
+  }
+
   public addOrRemoveFavorite(productId: number) {
     console.log('addOrRemoveFavorite click', productId);
     this._wishlistSvc.addWishlist(productId, 1);
@@ -43,18 +51,4 @@ export class CheckoutComponent {
   public onRemoveProduct(productId: number) {
     this.cartStore.removeItem(productId);
   }
-  /*   
-  
-  public remove(productId: number) {}
-
-  public increment(productId: number) {
-  } */
-
-  // public decrement(productId: number, quantity: number) {
-  /*   if (quantity === 1) {
-      this.cartStore.removeItem(productId);
-    } else {
-      this.cartStore.decrement(productId);
-    } */
-  // }
 }

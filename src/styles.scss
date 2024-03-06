@@ -3,3 +3,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+button:disabled {
+  @apply cursor-not-allowed disabled:bg-orange-300;
+}

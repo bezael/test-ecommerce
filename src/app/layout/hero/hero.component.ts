@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
           <h1
             class="max-w-xl text-[2.2rem] leading-none text-slate-900 font-extrabold font-sans text-center md:text-5xl lg:text-left lg:leading-tight mb-5"
           >
-            Before they sold out <br class="hidden lg:inline-block" />readymade
+            Before they sold out <br class="hidden lg:inline-block" />ready made
             gluten
           </h1>
           <p class="mb-8 leading-relaxed">

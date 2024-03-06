@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  booleanAttribute,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-heart-svg',
@@ -12,6 +7,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeartSVGComponent {
-  @Input({ required: true, transform: booleanAttribute }) public isDesired =
-    false;
+  isDesired = input<boolean>();
+  // TODO
+  /*   @Input({ required: true, transform: booleanAttribute }) public isDesired =
+    false; */
 }

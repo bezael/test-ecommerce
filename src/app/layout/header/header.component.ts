@@ -1,23 +1,25 @@
+import { CurrencyPipe, NgClass, SlicePipe } from '@angular/common';
 import {
-  CurrencyPipe,
-  NgClass,
-  SlicePipe,
-  TitleCasePipe,
-} from '@angular/common';
-import { Component, Input, inject, signal } from '@angular/core';
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CartStore } from '@store/shopping-cart.store';
+import { Product } from '@shared/models/product.interface';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, SlicePipe, CurrencyPipe, NgClass, TitleCasePipe],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink, SlicePipe, CurrencyPipe, NgClass],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  // categories = input.required<Category[]>();
-  @Input({ required: true }) categories: string[] = [];
+  categories = input.required<string[]>();
+  productsCart = input.required<Product[]>();
+  totalAmount = input.required<number>();
+  productsCount = input.required<number>();
   showCart = signal<boolean>(false);
-  cartStore = inject(CartStore);
 }

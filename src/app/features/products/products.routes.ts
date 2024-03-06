@@ -8,8 +8,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    loadComponent: () =>
-      import('./details/details.component').then((c) => c.DetailsComponent),
+    loadComponent: () => import('./details/details.component'),
   },
 ];
 export default routes;

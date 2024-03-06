@@ -1,3 +1,15 @@
+/* export interface Cart {
+  items: Product[];
+} */
+
+/* 
+export interface CartState {
+  products: Product[];
+  totalAmount: number;
+  productsCount: number;
+}
+ */
+
 interface Rating {
   rate: number;
   count: number;

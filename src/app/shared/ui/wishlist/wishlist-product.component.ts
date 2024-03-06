@@ -2,9 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Input,
   Output,
-  booleanAttribute,
+  input,
 } from '@angular/core';
 import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
 
@@ -13,18 +12,20 @@ import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-heart-svg (click)="toggleWishlist()" [isDesired]="isDesired" />
+    <app-heart-svg (click)="toggleWishlist()" [isDesired]="isDesired()" />
     <span (click)="toggleWishlist()">Wishlist</span>
   `,
   imports: [HeartSVGComponent],
 })
 export class WishlistProductComponent {
-  @Input({ required: true, transform: booleanAttribute }) public isDesired =
-    false;
+  isDesired = input<boolean>();
+  // TODO
+  /*   @Input({ required: true, transform: booleanAttribute }) public isDesired =
+    false; */
   @Output() public onClickHeartEvent = new EventEmitter<boolean>();
 
   public toggleWishlist(): void {
-    this.isDesired = !this.isDesired;
-    this.onClickHeartEvent.emit(this.isDesired);
+    // this.isDesired = !this.isDesired;
+    this.onClickHeartEvent.emit(!this.isDesired());
   }
 }

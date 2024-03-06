@@ -26,14 +26,16 @@
           @for (product of cartStore.products(); track $index) {
           <tr class="border-b border-gray-200">
             <td class="py-3">{{product.title | slice:0:40}}...</td>
-            <td class="py-3"><app-quantity [product]="product" /></td>
+            <td class="py-3">
+              <app-quantity (onChange)="updateQuantity($event, product.id)" [quantity]="product.quantity" />
+            </td>
             <td class="py-3 text-lg font-semibold text-gray-900">{{ product.subTotal || product.price | currency}}</td>
             <td>
               <app-remove-product (onClickRemoveProduct)="onRemoveProduct(product.id)"
                 class="flex items-center px-2 py-1 pl-0 space-x-2 text-orange-500 cursor-pointer" />
             </td>
             <td>
-              <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite(product.id)" [isDesired]="product?.isDesired"
+              <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite(product.id)" [isDesired]="product.isDesired"
                 class="flex items-center px-2 py-1 pl-0 mr-2 space-x-2 text-orange-500 cursor-pointer" />
             </td>
           </tr>
