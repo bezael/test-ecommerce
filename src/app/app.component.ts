@@ -3,6 +3,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CategoryService } from '@features/categories/categories.service';
 import { ProductsService } from '@features/products/products.service';
+import { CallToActionComponent } from '@layout/call-to-action/call-to-action.component';
 import { FooterComponent } from '@layout/footer/footer.component';
 import { HeaderComponent } from '@layout/header/header.component';
 import HeroComponent from '@layout/hero/hero.component';
@@ -20,6 +21,7 @@ import { filter, tap } from 'rxjs';
     SpinnerComponent,
     HeroComponent,
     FilterComponent,
+    CallToActionComponent,
     RouterOutlet,
     AsyncPipe,
   ],
@@ -43,6 +45,7 @@ import { filter, tap } from 'rxjs';
         <app-spinner />
         <router-outlet />
       </main>
+      <!--       <app-call-to-action /> -->
       <app-footer />
     </div>
   `,

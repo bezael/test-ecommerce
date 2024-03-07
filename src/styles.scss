@@ -8,3 +8,34 @@
 button:disabled {
   @apply cursor-not-allowed disabled:bg-orange-300;
 }
+
+
+/* .order-delivered {
+  @apply inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full
+}
+
+
+.order-pending {
+  @apply inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full
+}
+
+.order-cancelled {
+  @apply inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full
+} */
+
+
+.order-status {
+  @apply inline-flex px-2 text-xs font-semibold leading-5 rounded-full;
+}
+
+.succeeded {
+  @apply order-status text-green-800 bg-green-100;
+}
+
+.processing {
+  @apply order-status text-yellow-800 bg-yellow-100;
+}
+
+.canceled {
+  @apply order-status text-red-800 bg-red-100;
+}

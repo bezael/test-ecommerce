@@ -30,7 +30,7 @@ import { CartStore } from 'app/store/shopping-cart.store';
     </div>
   </section>`,
 })
-export class ProductsComponent {
+export default class ProductsComponent {
   readonly products = inject(ProductsService).products;
   private readonly cartStore = inject(CartStore);
 

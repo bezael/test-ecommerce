@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/categories/categories.routes'),
   },
   {
+    path: 'users',
+    loadChildren: () => import('./features/users/users.routes'),
+  },
+  {
     path: 'checkout',
     loadComponent: () =>
       import('./features/checkout/checkout.component').then(

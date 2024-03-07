@@ -1,0 +1,73 @@
+<section class="text-gray-600 body-font">
+  <div class="container py-24 mx-auto">
+    <div class="flex flex-col w-full text-center">
+      <h1 class="text-3xl font-medium text-gray-900 sm:text-4xl title-font">Orders</h1>
+    </div>
+  </div>
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Order
+                  </th>
+                  <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Date
+                  </th>
+                  <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Status
+                  </th>
+                  <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Total
+                  </th>
+                  <!--             <th scope="col"
+                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Actions
+                  </th> -->
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                @for(order of orders; track order.id){
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="text-sm font-medium text-gray-900">
+                        {{ order.id }}
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-500">{{ order.fecha }}</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="{{getClassOrderStatus(order.estatus)}}">
+                      {{order.estatus}}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    {{ order.total | currency }}
+                  </td>
+                  <!--         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Details</a>
+                  </td> -->
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>

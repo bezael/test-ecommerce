@@ -22,4 +22,5 @@ export class HeaderComponent {
   totalAmount = input.required<number>();
   productsCount = input.required<number>();
   showCart = signal<boolean>(false);
+  userMenu = ['profile', 'orders', 'logout'];
 }
