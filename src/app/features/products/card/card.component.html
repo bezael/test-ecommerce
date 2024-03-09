@@ -14,14 +14,8 @@
     </h2>
 
     <div class="flex items-center justify-between my-2">
-      <p class="text-2xl font-bold text-orange-500">{{ product().price | currency }}</p>
+      <p class="text-2xl font-bold text-orange-500">{{ product().price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
       <app-add-to-cart (addToCartEvent)="onAddToCart()" />
     </div>
-    <!--     @if (product().quantity >= 1) {
-    <div class="flex items-center justify-center mt-5 ">
-      <ng-content />
-    </div>
-    } -->
-
   </div>
 </div>

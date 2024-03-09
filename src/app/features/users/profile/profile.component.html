@@ -1,53 +1,70 @@
-<section class="text-gray-600 body-font">
-  <div class="container py-24 mx-auto">
-    <div class="flex flex-col w-full text-center">
-      <h1 class="text-3xl font-medium text-gray-900 sm:text-4xl title-font">Profile</h1>
-    </div>
-  </div>
-  <div class="container px-4 py-6 mx-auto">
-    <div class="overflow-hidden bg-white rounded-lg shadow-md">
-      <div class="p-4 border-b border-gray-200">
-        <h2 class="text-2xl font-semibold text-gray-800">Perfil de Usuario</h2>
-      </div>
-      <div class="p-4">
-        <div class="flex flex-col -mx-4 md:flex-row">
-          <div class="px-4 md:w-1/2">
-            <div class="mb-4">
-              <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-                Nombre
-              </label>
-              <input
-                class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="username" type="text" placeholder="Nombre de usuario" readonly>
-            </div>
-            <div class="mb-4">
-              <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-                Email
-              </label>
-              <input
-                class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="email" type="email" placeholder="usuario@example.com" readonly>
-            </div>
+<section class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-6xl mb-10 space-y-8">
+    <div class="px-8 py-6 mt-4 text-left bg-white rounded-b-lg shadow-2xl ">
+      <h3 class="text-2xl font-bold text-center">Profile</h3>
+      <form action="">
+        <div class="p-4 mt-4 rounded-md">
+          <h4 class="mb-4 text-lg font-bold">Personal data</h4>
+          <div>
+            <label class="block" for="name">Name</label>
+            <input type="text" placeholder="Name" id="name"
+              class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
           </div>
-          <div class="px-4 md:w-1/2">
-            <div class="mb-4">
-              <label class="block mb-2 text-sm font-bold text-gray-700" for="address">
-                Dirección
-              </label>
-              <textarea
-                class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="address" placeholder="Ingresa tu dirección" readonly></textarea>
+          <div class="mt-4">
+            <label class="block" for="email">Email</label>
+            <input type="email" placeholder="Email" id="email"
+              class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+          </div>
+          <div class="mt-4">
+            <label class="block" for="password">Password</label>
+            <input type="password" placeholder="Password" id="password"
+              class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+          </div>
+        </div>
+        <div class="p-4 mt-4 rounded-md">
+          <h4 class="mb-4 text-lg font-bold">Shipping address</h4>
+          <div>
+            <label class="block" for="line1">Address</label>
+            <input type="text" placeholder="Address" id="line1"
+              class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+          </div>
+          <div class="flex flex-wrap mt-4 -mx-2">
+            <!--           <div class="w-full px-2 mb-4 md:w-1/2 md:mb-0">
+              <label class="block" for="postal_code">Postal Code</label>
+              <input type="text" placeholder="Postal Code" id="postal_code"
+                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+            </div> -->
+            <div class="w-full px-2 md:w-1/2">
+              <label class="block" for="city">City</label>
+              <input type="text" placeholder="City" id="city"
+                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+            </div>
+            <div class="w-full px-2 md:w-1/2">
+              <label class="block" for="country">Country</label>
+              <input type="text" placeholder="Country" id="country"
+                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+            </div>
+
+          </div>
+          <div class="flex flex-wrap -mx-2">
+
+            <div class="w-full px-2 mb-4 md:w-1/2 md:mb-0">
+              <label class="block" for="postal_code">Postal Code</label>
+              <input type="text" placeholder="Postal Code" id="postal_code"
+                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
+            </div>
+            <div class="w-full px-2 md:w-1/2">
+              <label class="block" for="phone">Phone</label>
+              <input type="tel" placeholder="Phone" id="phone"
+                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-orange-500">
             </div>
           </div>
         </div>
-        <div class="flex justify-end">
+        <div class="flex items-center justify-between mt-4">
           <button
-            class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-            type="button">
-            Editar Perfil
-          </button>
+            class="w-full px-6 py-3 leading-5 text-white transition-colors duration-200 transform bg-orange-500 rounded-md hover:bg-orange-700 focus:outline-none focus:bg-orange-700">Update</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </section>

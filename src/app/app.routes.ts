@@ -15,10 +15,7 @@ export const routes: Routes = [
   },
   {
     path: 'checkout',
-    loadComponent: () =>
-      import('./features/checkout/checkout.component').then(
-        (c) => c.CheckoutComponent,
-      ),
+    loadChildren: () => import('./features/checkout/checkout.routes'),
   },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', redirectTo: '/products', pathMatch: 'full' },

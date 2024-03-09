@@ -19,16 +19,7 @@ export class CategoryService extends APIService {
 
   private _getCategories(): void {
     this.get<string[]>(this._endPoint)
-      .pipe(
-        // map((categories: string[]) => this._addPropertyId(categories)),
-        tap((categories: string[]) => this.categories.set(categories)),
-      )
+      .pipe(tap((categories: string[]) => this.categories.set(categories)))
       .subscribe();
   }
-  /*  private _addPropertyId(categories: string[]): string[] {
-    return categories.map((category, index) => ({
-      categoryName: category,
-      id: ++index,
-    }));
-  } */
 }

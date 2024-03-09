@@ -20,7 +20,7 @@ import { CartStore } from 'app/store/shopping-cart.store';
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss',
 })
-export class CheckoutComponent {
+export default class CheckoutComponent {
   readonly cartStore = inject(CartStore);
 
   private readonly _checkoutSvc = inject(CheckoutService);

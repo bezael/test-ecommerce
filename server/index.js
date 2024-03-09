@@ -9,6 +9,7 @@ app.use(cors());
 app.use(bodyparser.json());
 
 const YOUR_DOMAIN = 'http://localhost:4242';
+const YOUR_DOMAIN_FRONT = 'http://localhost:1780';
 
 
 app.post('/checkout', async (req, res) => {
@@ -23,16 +24,18 @@ app.post('/checkout', async (req, res) => {
         },
         unit_amount: item.price * 100,
       },
-      quantity: item.qty,
+      quantity: item.quantity,
     };
   });
 
   const session = await stripe.checkout.sessions.create({
+    customer_email: req.body.customer_email,
     line_items: [...items],
     mode: 'payment',
     success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    cancel_url: `${YOUR_DOMAIN_FRONT}/checkout`,
   });
+  console.log('session', session);
   res.status(200).json(session);
   // res.redirect(303, session.url);
 });

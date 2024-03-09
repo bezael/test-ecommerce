@@ -3,7 +3,7 @@
     <a routerLink="/" class="text-lg font-bold">DOMINISTORE</a>
     <div class="flex items-center">
       <!-- menu -->
-      <div class="relative group">
+      <!--       <div class="relative group">
         <button class="px-4 py-2 text-white focus:outline-none focus:ring">
           Categories
         </button>
@@ -15,7 +15,7 @@
           </a>
           }
         </div>
-      </div>
+      </div> -->
       <!-- fin menu  -->
       <a routerLink="/products" class="mr-6">Products</a>
       <a routerLink="/products" class="hidden mr-6">Login</a>
@@ -46,6 +46,10 @@
           <a [routerLink]="['/users/profile']"
             class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
             Profile
+          </a>
+          <a [routerLink]="['/users/orders']"
+            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+            Wishlist
           </a>
           <a [routerLink]="['/users/orders']"
             class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
