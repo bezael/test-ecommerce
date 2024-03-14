@@ -15,8 +15,6 @@ export class ProductsService extends APIService {
     this.getAllProducts();
   }
 
-  // fetch('https://fakestoreapi.com/products/category/jewelery')
-
   public getProductsByCategory(category: string): void {
     debugger;
     this.get<Product[]>(`${this._endPoint}/category/${category}`)

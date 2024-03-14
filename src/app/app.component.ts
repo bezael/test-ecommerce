@@ -3,6 +3,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CategoryService } from '@features/categories/categories.service';
 import { ProductsService } from '@features/products/products.service';
+import { UserService } from '@features/users/users.service';
 import { CallToActionComponent } from '@layout/call-to-action/call-to-action.component';
 import { FooterComponent } from '@layout/footer/footer.component';
 import { HeaderComponent } from '@layout/header/header.component';
@@ -11,7 +12,22 @@ import { FilterComponent } from '@shared/ui/filter/filter.component';
 import { SpinnerComponent } from '@shared/ui/spinner/spinner.component';
 import { CartStore } from '@store/shopping-cart.store';
 import { filter, tap } from 'rxjs';
-
+const user =  {
+  email: 'string',
+  username: 'string',
+  password: 'string',
+  name: {
+    firstname: 'string',
+    lastname: 'string',
+  },
+  address: {
+    city: 'string',
+    street: 'string',
+    number: 5,
+    zipcode: 'string',
+  },
+  phone: 'string'
+}
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -40,12 +56,10 @@ import { filter, tap } from 'rxjs';
           [categories]="categories()"
         />
       }
-      <!--  <main class="container px-4 py-10 mx-auto"> -->
       <main class="flex-grow">
         <app-spinner />
         <router-outlet />
       </main>
-      <!--       <app-call-to-action /> -->
       <app-footer />
     </div>
   `,
@@ -58,6 +72,8 @@ export class AppComponent implements OnInit {
   readonly totalAmount = computed(() => this.cartStore.totalAmount());
   readonly productsCount = computed(() => this.cartStore.productsCount());
   readonly categories = inject(CategoryService).categories;
+  readonly userSvc = inject(UserService);
+  
 
   private readonly _router = inject(Router);
   private readonly _productSvc = inject(ProductsService);
@@ -72,6 +88,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this._showSection();
+    this.userSvc.create(user)
   }
 
   public onCategoryChange(category: string) {
