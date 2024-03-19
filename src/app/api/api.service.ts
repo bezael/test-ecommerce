@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class APIService implements BaseInterface {
   public readonly _http = inject(HttpClient);
-  private readonly API = environment.API_URL;
+  private readonly API = environment.API_URL_FAKE_STORE;
 
   /**
    * GET request

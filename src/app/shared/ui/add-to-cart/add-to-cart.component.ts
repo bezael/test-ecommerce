@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Output,
+  output,
   signal,
 } from '@angular/core';
 
@@ -29,7 +30,7 @@ const defaultConfig: AddToCartConfig = {
 })
 export class AddToCartComponent {
   buttonConfig = signal<AddToCartConfig>(defaultConfig);
-  @Output() addToCartEvent = new EventEmitter<unknown>();
+  addToCartEvent = output();
 
   onAddToCart() {
     this.addToCartEvent.emit();

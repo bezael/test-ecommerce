@@ -1,10 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Input,
-  Output,
   booleanAttribute,
+  output
 } from '@angular/core';
 import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
 
@@ -22,7 +21,7 @@ export class WishlistProductComponent {
   // isDesired = input<boolean>();
   @Input({ required: true, transform: booleanAttribute }) public isDesired =
     false;
-  @Output() public onClickHeartEvent = new EventEmitter<boolean>();
+   public onClickHeartEvent = output<boolean>();
 
   public toggleWishlist(): void {
     this.isDesired = !this.isDesired;

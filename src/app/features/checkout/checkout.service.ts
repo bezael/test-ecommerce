@@ -19,9 +19,8 @@ export class CheckoutService {
       .post<any>(`${this._url}/checkout`, data)
       .pipe(
         map(async (res: any) => {
-          console.log('CheckoutResponse', res);
           const stripe = await loadStripe('pk_test_Zvh5KeROD4AbBdIsMZ0zzdUf');
-          stripe?.redirectToCheckout({ sessionId: res.id });
+          await stripe?.redirectToCheckout({ sessionId: res.id });
         }),
       )
       .subscribe({

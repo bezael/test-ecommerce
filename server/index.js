@@ -8,10 +8,16 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(bodyparser.json());
 
-const YOUR_DOMAIN = 'http://localhost:4242';
+const YOUR_DOMAIN = 'http://localhost:1780';
 const YOUR_DOMAIN_FRONT = 'http://localhost:1780';
 
+app.post('/webhook', (request, response) => {
+  const payload = request.body;
 
+  console.log("Got payload: " + payload);
+
+  response.status(200).end();
+});
 app.post('/checkout', async (req, res) => {
 
   const items = req.body.items.map((item) => {
@@ -32,10 +38,9 @@ app.post('/checkout', async (req, res) => {
     customer_email: req.body.customer_email,
     line_items: [...items],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
+    success_url: `${YOUR_DOMAIN}/checkout/thank-you`,
     cancel_url: `${YOUR_DOMAIN_FRONT}/checkout`,
   });
-  console.log('session', session);
   res.status(200).json(session);
   // res.redirect(303, session.url);
 });

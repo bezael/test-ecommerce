@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
   input,
+  output
 } from '@angular/core';
 
 @Component({
@@ -41,7 +40,7 @@ import {
 })
 export class QuantityComponent {
   public quantity = input.required<number>();
-  @Output() onChange = new EventEmitter<any>();
+  onChange = output<any>();
 
   public updateQuantity(action: string): void {
     this.onChange.emit(action);

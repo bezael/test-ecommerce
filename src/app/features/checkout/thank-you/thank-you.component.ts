@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './thank-you.component.html',
-  styleUrl: './thank-you.component.scss',
 })
 export default class ThankYouComponent {}

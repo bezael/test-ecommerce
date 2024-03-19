@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, output } from '@angular/core';
 import { RemoveSVGComponent } from './svg/remove-svg.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { RemoveSVGComponent } from './svg/remove-svg.component';
   imports: [RemoveSVGComponent],
 })
 export class RemoveProductComponent {
-  @Output() public onClickRemoveProduct = new EventEmitter<boolean>();
+  public onClickRemoveProduct = output();
 
   public onRemoveProduct(): void {
     this.onClickRemoveProduct.emit();

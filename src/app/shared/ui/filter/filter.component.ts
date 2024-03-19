@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Output,
   input,
+  output,
 } from '@angular/core';
 
 @Component({
@@ -44,7 +45,7 @@ import {
 })
 export class FilterComponent {
   readonly categories = input.required<any>();
-  @Output() categoryEvent = new EventEmitter<string>();
+   categoryEvent = output<string>();
 
   public onClick(category: string): void {
     this.categoryEvent.emit(category);
