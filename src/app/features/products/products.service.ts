@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { APIService } from '@api/api.service';
+import { environment } from '@envs/environment';
 import { Product } from '@shared/models/product.interface';
 import { map, tap } from 'rxjs';
 
@@ -8,7 +9,7 @@ export class ProductsService extends APIService {
   public products = signal<Product[]>([]);
   // public productSelected = signal<Product | undefined>(undefined);
 
-  private readonly _endPoint = '/products';
+  private readonly _endPoint =  `${environment.API_URL_FAKE_STORE}/products`;
 
   constructor() {
     super();

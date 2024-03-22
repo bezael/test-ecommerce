@@ -2,10 +2,6 @@ import { Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadComponent: () => import('./users.component'),
-  },
-  {
     path: 'login',
     loadComponent: () => import('./auth/login/login.component'),
   },

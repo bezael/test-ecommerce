@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { BaseInterface, RequestOptions } from '@api/base.interface';
-import { environment } from '@envs/environment';
 import { Observable } from 'rxjs';
 
 /**
@@ -10,7 +9,6 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class APIService implements BaseInterface {
   public readonly _http = inject(HttpClient);
-  private readonly API = environment.API_URL_FAKE_STORE;
 
   /**
    * GET request
@@ -19,7 +17,7 @@ export class APIService implements BaseInterface {
    * @returns {Observable<T>}
    */
   public getById<T>(endPoint: string, options?: RequestOptions): Observable<T> {
-    return this._http.get<T>(`${this.API}${endPoint}`, options);
+    return this._http.get<T>(`${endPoint}`, options);
   }
 
   /**
@@ -29,7 +27,7 @@ export class APIService implements BaseInterface {
    * @returns {Observable<T>}
    */
   public get<T>(endPoint: string, options?: RequestOptions): Observable<T> {
-    return this._http.get<T>(`${this.API}${endPoint}`, options);
+    return this._http.get<T>(`${endPoint}`, options);
   }
 
   /**
@@ -39,7 +37,7 @@ export class APIService implements BaseInterface {
    * @returns {Observable<T>}
    */
   public post<T>(endPoint: string, options?: RequestOptions): Observable<T> {
-    return this._http.post<T>(`${this.API}${endPoint}`, options);
+    return this._http.post<T>(`${endPoint}`, options);
   }
 
   /**
@@ -49,7 +47,7 @@ export class APIService implements BaseInterface {
    * @returns {Observable<T>}
    */
   public put<T>(endPoint: string, options?: RequestOptions): Observable<T> {
-    return this._http.put<T>(`${this.API}${endPoint}`, options);
+    return this._http.put<T>(`${endPoint}`, options);
   }
 
   /**
@@ -59,6 +57,6 @@ export class APIService implements BaseInterface {
    * @returns {Observable<T>}
    */
   public delete<T>(endPoint: string, options?: RequestOptions): Observable<T> {
-    return this._http.delete<T>(`${this.API}${endPoint}`, options);
+    return this._http.delete<T>(`${endPoint}`, options);
   }
 }

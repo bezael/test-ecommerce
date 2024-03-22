@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { APIService } from '@api/api.service';
+import { environment } from '@envs/environment';
 import { tap } from 'rxjs';
 
 /* export interface CategoryWithId {
@@ -10,7 +11,7 @@ import { tap } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class CategoryService extends APIService {
   readonly categories = signal<string[]>([]);
-  private readonly _endPoint = '/products/categories';
+  private readonly _endPoint = `${environment.API_URL_FAKE_STORE}/products/categories`;
 
   constructor() {
     super();

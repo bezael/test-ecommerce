@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadChildren: () => import('./features/users/users.routes'),
   },
   {
+    path: 'wishlist',
+    loadChildren: () => import('./features/wishlist/wishlist.routes'),
+  },
+  {
     path: 'checkout',
     loadChildren: () => import('./features/checkout/checkout.routes'),
   },

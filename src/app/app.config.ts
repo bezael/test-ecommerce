@@ -10,22 +10,24 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import localeEs from '@angular/common/locales/es';
+import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
 import { SpinnerInterceptor } from '@shared/interceptors/spinner.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 registerLocaleData(localeEs);
+
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },
     provideAnimations(),
     provideToastr({
       timeOut: 1500,
-      preventDuplicates: true,
+      preventDuplicates: false,
     }),
     provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(
       withFetch(),
-      withInterceptors([ErrorResponseInterceptor, SpinnerInterceptor]),
+      withInterceptors([AuthInterceptor, ErrorResponseInterceptor, SpinnerInterceptor]),
     ),
   ],
 };

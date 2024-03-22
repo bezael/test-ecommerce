@@ -1,33 +1,19 @@
-import { AsyncPipe } from '@angular/common';
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import { Component, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CategoryService } from '@features/categories/categories.service';
 import { ProductsService } from '@features/products/products.service';
 import { UserService } from '@features/users/users.service';
+import { UserStore } from '@features/users/users.store';
 import { CallToActionComponent } from '@layout/call-to-action/call-to-action.component';
 import { FooterComponent } from '@layout/footer/footer.component';
 import { HeaderComponent } from '@layout/header/header.component';
 import HeroComponent from '@layout/hero/hero.component';
 import { FilterComponent } from '@shared/ui/filter/filter.component';
 import { SpinnerComponent } from '@shared/ui/spinner/spinner.component';
-import { CartStore } from '@store/shopping-cart.store';
+import { CartState, CartStore } from '@store/shopping-cart.store';
 import { filter, tap } from 'rxjs';
-const user =  {
-  email: 'string',
-  username: 'string',
-  password: 'string',
-  name: {
-    firstname: 'string',
-    lastname: 'string',
-  },
-  address: {
-    city: 'string',
-    street: 'string',
-    number: 5,
-    zipcode: 'string',
-  },
-  phone: 'string'
-}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -40,21 +26,20 @@ const user =  {
     CallToActionComponent,
     RouterOutlet,
     AsyncPipe,
+    JsonPipe,
   ],
   template: `
     <div class="flex flex-col h-screen">
       <app-header
-        [categories]="categories()"
-        [productsCart]="productsCart()"
-        [totalAmount]="totalAmount()"
-        [productsCount]="productsCount()"
-      />
+        (onLogoutEvent)="onLogout()"
+        [cart]="cart"
+        [user]="currentUser()?.user"
+        [categories]="categories()"/>
       @if (showSection()) {
         <app-hero />
         <app-filter
           (categoryEvent)="onCategoryChange($event)"
-          [categories]="categories()"
-        />
+          [categories]="categories()"/>
       }
       <main class="flex-grow">
         <app-spinner />
@@ -67,29 +52,39 @@ const user =  {
 })
 export class AppComponent implements OnInit {
   showSection = signal<boolean>(false);
+  cart!: CartState;
+
   readonly cartStore = inject(CartStore);
-  readonly productsCart = computed(() => this.cartStore.products());
-  readonly totalAmount = computed(() => this.cartStore.totalAmount());
-  readonly productsCount = computed(() => this.cartStore.productsCount());
   readonly categories = inject(CategoryService).categories;
   readonly userSvc = inject(UserService);
-  
 
+  readonly currentUser = computed(() => this._userStore.currentUser());
+  
+  private readonly _userStore = inject(UserStore);
   private readonly _router = inject(Router);
   private readonly _productSvc = inject(ProductsService);
 
-  /*   
-    cart = computed(() => {
-      products: this.cartStore.products(),
-      productsCount: this.cartStore.productsCount(),
-      totalAmount: this.cartStore.totalAmount()
-    }); 
-    */
+  constructor() {
+      effect(() => {
+        this.cart = {
+          products: this.cartStore.products(),
+          productsCount: this.cartStore.productsCount(),
+          totalAmount:  this.cartStore.totalAmount()
+        }
+      })
+    }
 
   ngOnInit(): void {
     this._showSection();
-    this.userSvc.create(user)
   }
+  
+  public onLogout() {
+    this.userSvc.logout()
+      .pipe(
+        tap((res) => console.log('XXXXXXXXX logout', res))
+      )
+      .subscribe()
+   }
 
   public onCategoryChange(category: string) {
     if (category === 'all') {
