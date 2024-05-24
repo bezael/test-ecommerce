@@ -18,7 +18,7 @@ export class WishlistService extends APIService {
     return this.get<Wishlist[]>(this._endPoint);
   }
 
-  public addWishlist(productId: number, userId: number): Observable<any> {
+  public addOrRemoveWishlist(productId: number, userId: number): Observable<any> {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

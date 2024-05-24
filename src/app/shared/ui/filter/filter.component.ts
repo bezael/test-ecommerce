@@ -45,9 +45,9 @@ import {
 })
 export class FilterComponent {
   readonly categories = input.required<any>();
-   categoryEvent = output<string>();
+  categoryEvent = output<string>();
 
-  public onClick(category: string): void {
+  onClick(category: string): void {
     this.categoryEvent.emit(category);
   }
 }

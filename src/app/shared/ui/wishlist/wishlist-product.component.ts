@@ -2,9 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  booleanAttribute,
   output
 } from '@angular/core';
+import { Product } from '@shared/models/product.interface';
 import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
 
 @Component({
@@ -18,13 +18,29 @@ import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
   imports: [HeartSVGComponent],
 })
 export class WishlistProductComponent {
-  // isDesired = input<boolean>();
-  @Input({ required: true, transform: booleanAttribute }) public isDesired =
-    false;
-   public onClickHeartEvent = output<boolean>();
+  onClickHeartEvent = output<number>();
+  @Input({ required: true }) public product!: Product;
+  isDesired = false;
+  // product = input.required<Product | undefined>();
+  // isDesired:any;
+  // isDesired = computed(() => this.product()?.isDesired)
+/*   isDesired = computed(() => {
+    return this.product()?.isDesired;
+});
+ */
+/*   effect = (() => {
+    this.isDesired = this.product()?.isDesired;
+  }); */
 
+  // isDesired = input<boolean>();
+ /*  @Input({ required: true, transform: booleanAttribute }) public isDesired =
+    false; */
+  
   public toggleWishlist(): void {
     this.isDesired = !this.isDesired;
-    this.onClickHeartEvent.emit(this.isDesired);
+    this.product.isDesired = this.isDesired;
+    this.onClickHeartEvent.emit(this.product.id);
   }
+
+
 }

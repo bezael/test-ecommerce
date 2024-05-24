@@ -15,6 +15,5 @@ import { SpinnerService } from '@shared/services/spinner.service';
   }`,
 })
 export class SpinnerComponent {
-  private readonly spinnerSvc = inject(SpinnerService);
-  isLoading = this.spinnerSvc.isLoading;
+  isLoading = inject(SpinnerService).isLoading;
 }

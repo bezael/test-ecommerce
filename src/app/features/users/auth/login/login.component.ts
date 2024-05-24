@@ -11,6 +11,7 @@ import { UserStore } from '@features/users/users.store';
 })
 export default class LoginComponent {
   public loginForm!: FormGroup;
+  
   private readonly _userStore = inject(UserStore);
   private readonly _fb = new FormBuilder();
   private readonly _route = inject(Router);

@@ -16,8 +16,8 @@
             <span class="ml-3">{{product()?.rating?.count}} reviews</span>
           </div>
         </div>
-        <app-wishlist (onClickStarEvent)="addOrRemoveFavorite()" [isDesired]="product()?.isDesired"
-          class="flex items-center gap-2 mr-2 cursor-pointer" />
+        <!-- <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite($event)" [product]="product()"
+          class="flex items-center gap-2 mr-2 cursor-pointer" /> -->
         <p class="mt-6 mb-5 leading-relaxed">{{product()?.description}}</p>
         <div class="flex">
           <span class="text-2xl font-bold text-orange-500">{{product()?.price | currency}}</span>

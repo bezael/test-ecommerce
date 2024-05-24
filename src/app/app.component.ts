@@ -3,6 +3,7 @@ import { Component, OnInit, computed, effect, inject, signal } from '@angular/co
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CategoryService } from '@features/categories/categories.service';
 import { ProductsService } from '@features/products/products.service';
+import { AuthService } from '@features/users/auth/auth.service';
 import { UserService } from '@features/users/users.service';
 import { UserStore } from '@features/users/users.store';
 import { CallToActionComponent } from '@layout/call-to-action/call-to-action.component';
@@ -57,36 +58,37 @@ export class AppComponent implements OnInit {
   readonly cartStore = inject(CartStore);
   readonly categories = inject(CategoryService).categories;
   readonly userSvc = inject(UserService);
+  readonly authSvc = inject(AuthService);
 
   readonly currentUser = computed(() => this._userStore.currentUser());
-  
+
   private readonly _userStore = inject(UserStore);
   private readonly _router = inject(Router);
   private readonly _productSvc = inject(ProductsService);
 
   constructor() {
-      effect(() => {
-        this.cart = {
-          products: this.cartStore.products(),
-          productsCount: this.cartStore.productsCount(),
-          totalAmount:  this.cartStore.totalAmount()
-        }
-      })
-    }
+    effect(() => {
+      this.cart = {
+        products: this.cartStore.products(),
+        productsCount: this.cartStore.productsCount(),
+        totalAmount: this.cartStore.totalAmount()
+      }
+    })
+  }
 
   ngOnInit(): void {
     this._showSection();
   }
-  
-  public onLogout() {
-    this.userSvc.logout()
+
+   onLogout() {
+    this.authSvc.logout()
       .pipe(
         tap((res) => console.log('XXXXXXXXX logout', res))
       )
       .subscribe()
-   }
+  }
 
-  public onCategoryChange(category: string) {
+   onCategoryChange(category: string) {
     if (category === 'all') {
       this._productSvc.getAllProducts();
     } else {

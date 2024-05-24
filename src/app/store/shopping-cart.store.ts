@@ -67,10 +67,10 @@ export const CartStore = signalStore(
       const updatedProduct = products().map((product) =>
         product.id === id
           ? {
-              ...product,
-              quantity: product.quantity + 1,
-              subTotal: (product.quantity + 1) * Number(product.price),
-            }
+            ...product,
+            quantity: product.quantity + 1,
+            subTotal: (product.quantity + 1) * Number(product.price),
+          }
           : product,
       );
 
@@ -80,10 +80,10 @@ export const CartStore = signalStore(
       const updatedProduct = products().map((product) =>
         product.id === id
           ? {
-              ...product,
-              quantity: product.quantity - 1,
-              subTotal: (product.quantity - 1) * Number(product.price),
-            }
+            ...product,
+            quantity: product.quantity - 1,
+            subTotal: (product.quantity - 1) * Number(product.price),
+          }
           : product,
       );
       patchState(store, { products: updatedProduct });

@@ -6,8 +6,8 @@ import { map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService extends APIService {
-  public products = signal<Product[]>([]);
-  // public productSelected = signal<Product | undefined>(undefined);
+   products = signal<Product[]>([]);
+  //  productSelected = signal<Product | undefined>(undefined);
 
   private readonly _endPoint =  `${environment.API_URL_FAKE_STORE}/products`;
 
@@ -16,7 +16,7 @@ export class ProductsService extends APIService {
     this.getAllProducts();
   }
 
-  public getProductsByCategory(category: string): void {
+   getProductsByCategory(category: string): void {
     debugger;
     this.get<Product[]>(`${this._endPoint}/category/${category}`)
       .pipe(
@@ -25,7 +25,7 @@ export class ProductsService extends APIService {
       )
       .subscribe();
   }
-  public getAllProducts(): void {
+   getAllProducts(): void {
     this.get<Product[]>(`${this._endPoint}?sort=desc`)
       .pipe(
         map((products: Product[]) => this._addProperties(products)),

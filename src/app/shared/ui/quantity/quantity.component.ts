@@ -39,10 +39,10 @@ import {
   `,
 })
 export class QuantityComponent {
-  public quantity = input.required<number>();
+  quantity = input.required<number>();
   onChange = output<any>();
 
-  public updateQuantity(action: string): void {
+  updateQuantity(action: string): void {
     this.onChange.emit(action);
   }
 }

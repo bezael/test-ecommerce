@@ -26,10 +26,12 @@ import { QuantityComponent } from '@shared/ui/quantity/quantity.component';
 })
 export class CardComponent {
   // @Input({ required: true, transform: addDiscountProperty }) product!: Product;
+  // @Output() addToCartEvent = new EventEmitter<Product>();
+  
   product = input.required<Product>();
   addToCartEvent = output<Product>();
   
-  public onAddToCart(): void {
+   onAddToCart(): void {
     this.addToCartEvent.emit(this.product());
   }
 }

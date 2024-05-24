@@ -1,10 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
   output,
-  signal,
+  signal
 } from '@angular/core';
 
 interface AddToCartConfig {

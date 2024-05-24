@@ -11,9 +11,9 @@ import { RemoveSVGComponent } from './svg/remove-svg.component';
   imports: [RemoveSVGComponent],
 })
 export class RemoveProductComponent {
-  public onClickRemoveProduct = output();
+  onClickRemoveProduct = output();
 
-  public onRemoveProduct(): void {
+  onRemoveProduct(): void {
     this.onClickRemoveProduct.emit();
   }
 }

@@ -2,6 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ProductsService } from '@features/products/products.service';
+import { WishlistService } from '@features/wishlist/wishlist.service';
 import { Product } from '@shared/models/product.interface';
 import { AddToCartComponent } from '@shared/ui/add-to-cart/add-to-cart.component';
 import { WishlistProductComponent } from '@shared/ui/wishlist/wishlist-product.component';
@@ -16,21 +17,25 @@ import { CartStore } from 'app/store/shopping-cart.store';
 export default class DetailsComponent {
   starsArray: number[] = new Array(5).fill(0);
   cartStore = inject(CartStore);
-
+  wishlistSvc = inject(WishlistService);
+  
   productId = input.required<number>({ alias: 'id' });
 
   product = computed(() =>
-    this.productSvc.products()?.find(({ id }) => id == this.productId()),
+    this._productSvc.products()?.find(({ id }) => id == this.productId())
   );
 
-  private readonly productSvc = inject(ProductsService);
-  private readonly sanitizer = inject(DomSanitizer);
+  private readonly _productSvc = inject(ProductsService);
+  private readonly _sanitizer = inject(DomSanitizer);
 
-  onAddToCart() {
+  public onAddToCart():void {
     this.cartStore.addToCart(this.product() as Product);
   }
 
-  addOrRemoveFavorite() {}
+  public addOrRemoveFavorite(product:any): void {
+    console.log('Akiii', product);
+    this.wishlistSvc.addOrRemoveWishlist(product, 2 );
+  }
 
   // TODO: Por Dios refactorizar esto
   getStarSVG(index: number): SafeHtml {
@@ -62,6 +67,6 @@ export default class DetailsComponent {
               </path>
             </svg>`;
     }
-    return this.sanitizer.bypassSecurityTrustHtml(svgContent);
+    return this._sanitizer.bypassSecurityTrustHtml(svgContent);
   }
 }

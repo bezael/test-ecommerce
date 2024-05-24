@@ -13,7 +13,7 @@ import {
 })
 export class HeartSVGComponent {
   // isDesired = input<boolean>();
-
+  // Should be done with model signal
   @Input({ required: true, transform: booleanAttribute }) public isDesired =
     false;
 }
