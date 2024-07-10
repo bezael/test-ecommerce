@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 
-const routes: Routes = [
+const categoriesRoutes: Routes = [
   {
     path: ':categoryName',
     loadComponent: () => import('./categories.component'),
   },
 ];
-export default routes;
+export default categoriesRoutes;

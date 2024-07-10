@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-const routes: Routes = [
+const checkoutRoutes: Routes = [
   {
     path: '',
     loadComponent: () => import('./checkout.component'),
@@ -10,4 +10,4 @@ const routes: Routes = [
     loadComponent: () => import('./thank-you/thank-you.component'),
   },
 ];
-export default routes;
+export default checkoutRoutes;
