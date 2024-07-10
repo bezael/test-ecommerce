@@ -1,0 +1,16 @@
+@tailwind components;
+
+@layer components {
+
+  .footer {
+    @apply w-full text-slate-dark;
+  }
+
+  .footer-container {
+    @apply container px-5 py-4 ml-auto bg-slate-lighter;
+  }
+
+  .footer-text {
+    @apply text-sm font-semibold text-slate-dark xl:text-center;
+  }
+}

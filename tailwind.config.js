@@ -11,7 +11,11 @@ module.exports = {
           dark: '#ea580c',   // orange-700
         },
         slate: {
-          default: '#1e293b', // slate-900
+          lighter: '#cbd5e1',   // slate-300
+          light: '#94a3b8',     // slate-400
+          medium: '#475569',    // slate-600
+          dark: '#334155',      // slate-700
+          default: '#1e293b',   // slate-900
         }
       }
     },

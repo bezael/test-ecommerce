@@ -1,7 +1,6 @@
-<nav class="p-4 text-white bg-orange-500">
-  <div class="container flex items-center justify-between mx-auto">
-    <a routerLink="/" class="text-lg font-bold">DOMINISTORE <!-- {{user()?.name | json }} -->
-    </a>
+<nav class="navbar">
+  <div class="nav-container">
+    <a routerLink="/" class="nav-logo">DOMINISTORE</a>
     <div class="flex items-center">
       <a routerLink="/products" class="mr-6">Products</a>
       <a routerLink="/users/login" class="hidden mr-6">Login</a>
@@ -27,31 +26,25 @@
             </g>
           </svg>
         </button>
-        <div class="absolute hidden bg-white rounded-md shadow-md w-44 group-hover:block">
+        <div class="dropdown-menu">
           @if (!!user()?.name) {
-          <a [routerLink]="['/users/profile']"
-            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+          <a [routerLink]="['/users/profile']" class="dropdown-item">
             Profile
           </a>
-          <a [routerLink]="['/wishlist']"
-            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+          <a [routerLink]="['/wishlist']" class="dropdown-item">
             Wishlist
           </a>
-          <a [routerLink]="['/users/orders']"
-            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+          <a [routerLink]="['/users/orders']" class="dropdown-item">
             Orders
           </a>
-          <a href="#" (click)="onLogoutEvent.emit()"
-            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+          <a href="#" (click)="onLogoutEvent.emit()" class="dropdown-item">
             Logout
           </a>
           } @else {
-          <a [routerLink]="['/users/login']"
-            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+          <a [routerLink]="['/users/login']" class="dropdown-item">
             Login
           </a>
-          <a [routerLink]="['/users/register']"
-            class="block px-4 py-2 text-sm capitalize text-slate-900 hover:bg-slate-600 hover:text-white">
+          <a [routerLink]="['/users/register']" class="dropdown-item">
             Register
           </a>
           }
@@ -70,21 +63,20 @@
               d="M12.5 12C11.6716 12 11 12.6716 11 13.5C11 14.3284 11.6716 15 12.5 15C13.3284 15 14 14.3284 14 13.5C14 12.6716 13.3284 12 12.5 12ZM12 13.5C12 13.2239 12.2239 13 12.5 13C12.7761 13 13 13.2239 13 13.5C13 13.7761 12.7761 14 12.5 14C12.2239 14 12 13.7761 12 13.5Z"
               fill="black" fill-rule="evenodd" />
           </svg>
-          <span class="absolute right-0 px-1 text-lg font-bold text-white -top-1">{{ cart()?.productsCount
+          <span class="cart-info">{{ cart()?.productsCount
             }}</span>
         </a>
 
         @if (showCart() && cart().productsCount) {
-        <div [ngClass]="{'show-cart-animation': showCart()}"
-          class="absolute right-0 z-30 w-48 p-2 mt-2 text-white rounded-sm bg-slate-400">
+        <div [ngClass]="{'show-cart-animation': showCart()}" class="cart-dropdown">
           @for (product of cart().products; track $index) {
-          <div class="flex items-center justify-between">
+          <div class="cart-product">
             <span>{{ product.quantity}} {{ product.title | slice: 0: 10 }}</span>
             <span> {{ product.subTotal || product.price | currency }}</span>
           </div>
           }
-          <hr class="my-4 border-gray-500 border-t-1" />
-          <div class="flex justify-between py-3 font-light">
+          <hr class="border-divider" />
+          <div class="cart-total">
             Total:
             <span class="not-italic font-bold">{{
               cart().totalAmount | currency }}</span>
