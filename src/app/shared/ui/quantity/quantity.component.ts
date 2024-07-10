@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output
+  output,
 } from '@angular/core';
 
 @Component({
@@ -10,11 +10,11 @@ import {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="flex items-center space-x-2">
+    <div class="flex-center-space">
       <button
         [disabled]="quantity() === 1"
         (click)="updateQuantity('DECREMENT')"
-        class="px-3 py-1 bg-orange-500 text-white text-sm font-semibold rounded-md hover:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-500 focus:ring-opacity-50"
+        class="btn"
         id="decrement"
       >
         -
@@ -22,21 +22,18 @@ import {
 
       <input
         type="text"
-        class="w-16 px-2 py-1 text-sm text-center border rounded-md focus:ring focus:ring-orange-500 focus:ring-opacity-50"
+        class="input"
         [value]="quantity()"
         id="numberInput"
         readonly
       />
 
-      <button
-        (click)="updateQuantity('INCREMENT')"
-        class="px-3 py-1 bg-orange-500 text-white text-sm font-semibold rounded-md hover:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-500 focus:ring-opacity-50"
-        id="increment"
-      >
+      <button (click)="updateQuantity('INCREMENT')" class="btn" id="increment">
         +
       </button>
     </div>
   `,
+  styleUrl: './quantity.component.scss',
 })
 export class QuantityComponent {
   quantity = input.required<number>();

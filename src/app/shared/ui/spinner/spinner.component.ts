@@ -1,18 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SpinnerService } from '@shared/services/spinner.service';
 
 @Component({
   selector: 'app-spinner',
   standalone: true,
   template: ` @if (isLoading()) {
-    <div class="overlay">
-      <div class="flex justify-center items-center min-h-screen">
-        <div
-          class="animate-spin rounded-full h-32 w-32 border-t-4 border-b-4 border-orange-500"
-        ></div>
-      </div>
+    <!-- <div class="overlay"> -->
+    <div class="flex-center">
+      <div class="spinner"></div>
     </div>
+    <!-- </div> -->
   }`,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './spinner.component.scss',
 })
 export class SpinnerComponent {
   isLoading = inject(SpinnerService).isLoading;

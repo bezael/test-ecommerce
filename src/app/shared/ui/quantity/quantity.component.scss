@@ -1,0 +1,15 @@
+@tailwind components;
+
+@layer components {
+  .btn {
+    @apply px-3 py-1 bg-primary-default text-white text-sm font-semibold rounded-md hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-default focus:ring-opacity-50;
+  }
+
+  .input {
+    @apply w-16 px-2 py-1 text-sm text-center border rounded-md focus:ring focus:ring-primary-default focus:ring-opacity-50;
+  }
+
+  .flex-center-space {
+    @apply flex items-center space-x-2;
+  }
+}

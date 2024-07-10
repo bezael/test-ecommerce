@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { RemoveSVGComponent } from './svg/remove-svg.component';
 
 @Component({
@@ -8,6 +8,7 @@ import { RemoveSVGComponent } from './svg/remove-svg.component';
     <app-remove-svg (click)="onRemoveProduct()" />
     <span (click)="onRemoveProduct()">Remove</span>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RemoveSVGComponent],
 })
 export class RemoveProductComponent {

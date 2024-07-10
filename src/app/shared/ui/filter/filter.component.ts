@@ -1,8 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Output,
   input,
   output,
 } from '@angular/core';
@@ -11,21 +9,15 @@ import {
   selector: 'app-filter',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './filter.component.scss',
   template: `
-    <h2 class="text-center font-bold text-4xl max-w-lg mx-auto text-slate-900">
-      <span
-        class="text-transparent bg-clip-text bg-gradient-to-br from-orange-500 from-20%  via-orange-600 via-30% to-orange-700"
-        >Popular</span
-      >
+    <h2 class="heading">
+      <span class="highlight">Popular</span>
       categories
     </h2>
-    <ul class="flex flex-wrap gap-3 py-10 items-center justify-center">
+    <ul class="list-container">
       <li>
-        <button
-          type="button"
-          (click)="onClick('all')"
-          class="bg-orange-500 text-md font-medium px-5 capitalize py-2 rounded-md hover:bg-orange-700 flex items-center gap-2 text-white ease-linear duration-300"
-        >
+        <button type="button" (click)="onClick('all')" class="btn btn-hover">
           {{ 'ALL' }}
         </button>
       </li>
@@ -34,7 +26,7 @@ import {
           <button
             type="button"
             (click)="onClick(category)"
-            class="bg-orange-500 text-md font-medium px-5 capitalize py-2 rounded-md hover:bg-orange-700 flex items-center gap-2 text-white ease-linear duration-300"
+            class="btn btn-hover"
           >
             {{ category }}
           </button>

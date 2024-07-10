@@ -4,9 +4,16 @@ import { catchError, throwError } from 'rxjs';
 export const ErrorResponseInterceptor: HttpInterceptorFn = (req, next) =>
   next(req).pipe(catchError(handleErrorResponse));
 
-function handleErrorResponse(
+const handleErrorResponse = (
   error: HttpErrorResponse,
-): ReturnType<typeof throwError> {
+): ReturnType<typeof throwError> => {
   const errorResponse = `Error code: ${error.status}, message: ${error.message}`;
   return throwError(() => errorResponse);
-}
+};
+
+// function handleErrorResponse(
+//   error: HttpErrorResponse,
+// ): ReturnType<typeof throwError> {
+//   const errorResponse = `Error code: ${error.status}, message: ${error.message}`;
+//   return throwError(() => errorResponse);
+// }
