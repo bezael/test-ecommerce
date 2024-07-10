@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
 import { CardComponent } from '@features/products/card/card.component';
 import { ProductsService } from '@features/products/products.service';
@@ -6,7 +5,7 @@ import { ProductsService } from '@features/products/products.service';
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CardComponent, CommonModule],
+  imports: [CardComponent],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
 })
@@ -30,5 +29,5 @@ export default class CategoriesComponent {
 
   //  this.productSvc.products()?.find(({ id }) => id == this.productId()),
 
-  onAddToCart(evnet: any): void {}
+  onAddToCart(event: any): void {}
 }

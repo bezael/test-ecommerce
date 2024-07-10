@@ -1,10 +1,10 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
-const routes: Routes = [
+const wishlistRoutes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./wishlist.component')
-  }
-]
+    loadComponent: () => import('./wishlist.component'),
+  },
+];
 
-export default routes;
+export default wishlistRoutes;

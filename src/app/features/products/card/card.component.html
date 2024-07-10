@@ -1,20 +1,17 @@
-<div class="p-4 mt-2 mb-6 overflow-hidden rounded-b-lg shadow-none hover:shadow-2xl text-slate-600 ">
-  <a class="relative block h-48 overflow-hidden rounded" [routerLink]="['/products', (product().id)]">
-    <img class="w-full transition duration-500 transform hover:scale-105" src="{{ product().image }}"
-      alt="{{ product().title }}" />
+<div class="product-card">
+  <a class="product-image-link" [routerLink]="['/products', (product().id)]">
+    <img class="product-image" src="{{ product().image }}" alt="{{ product().title }}" />
   </a>
-
   <div class="mt-4">
-    <h3 class="mb-1 text-xs tracking-widest title-font">
+    <h3 class="product-category">
       {{ product().category }}
     </h3>
-    <h2 class="py-4 text-lg font-medium text-slate-900 title-font">
+    <h2 class="product-title">
       <a [routerLink]="['/products', (product().id)]">
         {{ product().title | slice: 0 : 30 }}</a>
     </h2>
-
-    <div class="flex items-center justify-between my-2">
-      <p class="text-2xl font-bold text-orange-500">{{ product().price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
+    <div class="product-price-container">
+      <p class="product-price">{{ product().price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
       <app-add-to-cart (addToCartEvent)="onAddToCart()" />
     </div>
   </div>

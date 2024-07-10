@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { CardComponent } from '@features/products/card/card.component';
 import { ProductsService } from '@features/products/products.service';
@@ -9,15 +8,15 @@ import { CartStore } from 'app/store/shopping-cart.store';
 @Component({
   selector: 'app-products',
   standalone: true,
-
-  imports: [CardComponent, QuantityComponent, CommonModule],
-  template: ` <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-wrap -m-4">
+  imports: [CardComponent, QuantityComponent],
+  styleUrl: './products.component.scss',
+  template: ` <section class="text-gray-600">
+    <div class="product-container">
+      <div class="product-grid">
         @for (product of products(); track product.id) {
           <app-card
             (addToCartEvent)="onAddToCart($event)"
-            class="w-full p-4 lg:w-1/4 md:w-1/2 "
+            class="product-card"
             [product]="product"
           >
             <!--      <app-quantity

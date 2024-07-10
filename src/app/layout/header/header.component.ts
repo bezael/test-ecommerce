@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe, NgClass, SlicePipe } from '@angular/common';
+import { CurrencyPipe, NgClass, SlicePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,7 +14,7 @@ import { CartState } from '@store/shopping-cart.store';
   selector: 'app-header',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, SlicePipe, CurrencyPipe, NgClass, CommonModule],
+  imports: [RouterLink, SlicePipe, CurrencyPipe, NgClass],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -25,5 +25,4 @@ export class HeaderComponent {
   showCart = signal<boolean>(false);
 
   onLogoutEvent = output();
-  
 }

@@ -13,28 +13,29 @@ import { CartStore } from 'app/store/shopping-cart.store';
   standalone: true,
   imports: [AddToCartComponent, WishlistProductComponent, CurrencyPipe],
   templateUrl: './details.component.html',
+  styleUrl: './details.component.scss',
 })
 export default class DetailsComponent {
   starsArray: number[] = new Array(5).fill(0);
   cartStore = inject(CartStore);
   wishlistSvc = inject(WishlistService);
-  
+
   productId = input.required<number>({ alias: 'id' });
 
   product = computed(() =>
-    this._productSvc.products()?.find(({ id }) => id == this.productId())
+    this._productSvc.products()?.find(({ id }) => id == this.productId()),
   );
 
   private readonly _productSvc = inject(ProductsService);
   private readonly _sanitizer = inject(DomSanitizer);
 
-  public onAddToCart():void {
+  public onAddToCart(): void {
     this.cartStore.addToCart(this.product() as Product);
   }
 
-  public addOrRemoveFavorite(product:any): void {
+  public addOrRemoveFavorite(product: any): void {
     console.log('Akiii', product);
-    this.wishlistSvc.addOrRemoveWishlist(product, 2 );
+    this.wishlistSvc.addOrRemoveWishlist(product, 2);
   }
 
   // TODO: Por Dios refactorizar esto

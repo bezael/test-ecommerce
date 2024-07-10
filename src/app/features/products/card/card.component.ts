@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output
+  output,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '@shared/models/product.interface';
@@ -22,16 +22,17 @@ import { QuantityComponent } from '@shared/ui/quantity/quantity.component';
     JsonPipe,
   ],
   templateUrl: './card.component.html',
+  styleUrl: './card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
   // @Input({ required: true, transform: addDiscountProperty }) product!: Product;
   // @Output() addToCartEvent = new EventEmitter<Product>();
-  
+
   product = input.required<Product>();
   addToCartEvent = output<Product>();
-  
-   onAddToCart(): void {
+
+  onAddToCart(): void {
     this.addToCartEvent.emit(this.product());
   }
 }

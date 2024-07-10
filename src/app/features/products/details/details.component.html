@@ -1,13 +1,12 @@
-<section class="overflow-hidden text-slate-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-wrap mx-auto lg:w-4/5">
-      <img alt="{{product()?.title}}" class="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto"
-        src="{{product()?.image}}">
-      <div class="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
-        <h2 class="text-sm tracking-widest title-font">{{product()?.category}}</h2>
-        <h1 class="mb-1 text-3xl font-medium text-slate-900 title-font">{{product()?.title}}</h1>
-        <div class="flex items-center justify-between my-4">
-          <div class="flex items-center">
+<section class="product-section">
+  <div class="product-container">
+    <div class="product-wrapper">
+      <img alt="{{product()?.title}}" class="product-image" src="{{product()?.image}}">
+      <div class="product-details">
+        <h2 class="product-category">{{product()?.category}}</h2>
+        <h1 class="product-title">{{product()?.title}}</h1>
+        <div class="product-rating">
+          <div class="product-reviews">
             @for (star of starsArray; track index; let index = $index) {
             @if (product()?.rating?.rate) {
             <span [innerHTML]="getStarSVG(index)"></span>
@@ -17,10 +16,10 @@
           </div>
         </div>
         <!-- <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite($event)" [product]="product()"
-          class="flex items-center gap-2 mr-2 cursor-pointer" /> -->
-        <p class="mt-6 mb-5 leading-relaxed">{{product()?.description}}</p>
+          class="wishlist" /> -->
+        <p class="product-description">{{product()?.description}}</p>
         <div class="flex">
-          <span class="text-2xl font-bold text-orange-500">{{product()?.price | currency}}</span>
+          <span class="product-price">{{product()?.price | currency}}</span>
           <app-add-to-cart class="ml-auto" (addToCartEvent)="onAddToCart()" />
         </div>
       </div>
