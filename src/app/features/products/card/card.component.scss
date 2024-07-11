@@ -13,10 +13,6 @@
     @apply w-full transition duration-500 transform hover:scale-105;
   }
 
-  // .product-details {
-  //   @apply mt-4;
-  // }
-
   .product-category {
     @apply mb-1 text-xs tracking-widest;
   }
@@ -25,11 +21,11 @@
     @apply py-4 text-lg font-medium text-slate-default;
   }
 
-  .product-price-container {
-    @apply flex items-center justify-between my-2;
-  }
+  // .product-price-container {
+  //   @apply flex items-center justify-between my-2;
+  // }
 
-  .product-price {
-    @apply text-2xl font-bold text-primary-default;
-  }
+  // .product-price {
+  //   @apply text-2xl font-bold text-primary-default;
+  // }
 }

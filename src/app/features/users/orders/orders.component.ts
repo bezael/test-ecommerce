@@ -3,6 +3,13 @@ import { Component } from '@angular/core';
 
 type OrderStatus = 'Cancelled' | 'Delivered' | 'Pending';
 
+interface Order {
+  id: string;
+  date: string;
+  status: OrderStatus;
+  total: number;
+}
+
 @Component({
   selector: 'app-orders',
   standalone: true,
@@ -10,41 +17,41 @@ type OrderStatus = 'Cancelled' | 'Delivered' | 'Pending';
   templateUrl: './orders.component.html',
 })
 export default class OrdersComponent {
-  orders: any[] = [
+  orders: Order[] = [
     {
       id: '1001',
-      fecha: '2024-03-01',
-      estatus: 'Delivered',
+      date: '2024-03-01',
+      status: 'Delivered',
       total: 299.99,
     },
     {
       id: '1002',
-      fecha: '2024-03-02',
-      estatus: 'Pending',
+      date: '2024-03-02',
+      status: 'Pending',
       total: 159.99,
     },
     {
       id: '1003',
-      fecha: '2024-03-02',
-      estatus: 'Cancelled',
+      date: '2024-03-02',
+      status: 'Cancelled',
       total: 89.99,
     },
     {
       id: '1004',
-      fecha: '2024-03-03',
-      estatus: 'Delivered',
+      date: '2024-03-03',
+      status: 'Delivered',
       total: 49.99,
     },
     {
       id: '1005',
-      fecha: '2024-03-04',
-      estatus: 'Pending',
+      date: '2024-03-04',
+      status: 'Pending',
       total: 199.99,
     },
     {
       id: '1006',
-      fecha: '2024-03-05',
-      estatus: 'Cancelled',
+      date: '2024-03-05',
+      status: 'Cancelled',
       total: 349.99,
     },
   ];

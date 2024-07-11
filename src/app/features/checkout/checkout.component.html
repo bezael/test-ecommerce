@@ -1,7 +1,7 @@
-<section class="text-gray-600 body-font">
+<section class="text-gray-light">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col w-full mb-20 text-center">
-      <h1 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">Checkout page</h1>
+      <h1 class="mb-2 text-3xl font-medium text-gray-900 sm:text-4xl ">Checkout page</h1>
     </div>
     @if(cartStore.productsCount()) {
     <div class="w-full mx-auto overflow-auto lg:w-2/3">
@@ -13,13 +13,12 @@
       <table class="w-full text-left whitespace-no-wrap table-auto">
         <thead>
           <tr>
-            <th
-              class="px-2 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 rounded-tl rounded-bl title-font">
+            <th class="px-2 py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 rounded-tl rounded-bl ">
               Name</th>
-            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Qty</th>
-            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">Price</th>
-            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">&nbsp;</th>
-            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 title-font">&nbsp;</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 ">Qty</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 ">Price</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 ">&nbsp;</th>
+            <th class="py-3 text-sm font-medium tracking-wider text-gray-900 bg-gray-100 ">&nbsp;</th>
           </tr>
         </thead>
         <tbody>
@@ -60,7 +59,7 @@
 
     } @else {
     <div class="flex flex-col w-full mb-20 text-center">
-      <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl title-font">The shopping cart is empty</h3>
+      <h3 class="my-2 text-3xl font-medium text-gray-900 sm:text-4xl ">The shopping cart is empty</h3>
     </div>
     }
   </div>

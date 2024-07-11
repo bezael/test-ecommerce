@@ -1,0 +1,31 @@
+@tailwind components;
+
+@layer components {
+  .btn {
+    @apply w-full px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-primary-default rounded-md hover:bg-primary-dark focus:outline-none focus:bg-primary-dark;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary-default;
+  }
+
+  .link {
+    @apply font-medium text-primary-default hover:text-primary-dark;
+  }
+
+  .container {
+    @apply flex flex-col items-center justify-center min-h-screen;
+  }
+
+  .card {
+    @apply w-full max-w-lg space-y-8;
+  }
+
+  .card-content {
+    @apply px-8 py-6 mt-4 text-left bg-white rounded-b-lg shadow-2xl;
+  }
+
+  .heading {
+    @apply text-2xl font-bold text-center;
+  }
+}

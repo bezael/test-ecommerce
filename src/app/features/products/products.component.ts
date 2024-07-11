@@ -10,7 +10,7 @@ import { CartStore } from 'app/store/shopping-cart.store';
   standalone: true,
   imports: [CardComponent, QuantityComponent],
   styleUrl: './products.component.scss',
-  template: ` <section class="text-gray-600">
+  template: ` <section class="text-gray-light">
     <div class="product-container">
       <div class="product-grid">
         @for (product of products(); track product.id) {

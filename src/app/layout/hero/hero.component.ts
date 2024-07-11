@@ -19,7 +19,7 @@ import { Component } from '@angular/core';
             hexagon try-hard chambray.
           </p>
           <div class="btn-container">
-            <button class="btn">Discounts</button>
+            <button class="btn-primary">Discounts</button>
           </div>
         </div>
         <div class="image-container">

@@ -1,35 +1,31 @@
-<section class="text-gray-600 body-font">
+<section class="text-gray-light">
   <div class="container py-24 mx-auto">
-    <div class="flex flex-col w-full text-center">
-      <h1 class="text-3xl font-medium text-gray-900 sm:text-4xl title-font">Orders</h1>
+    <div class="flex-col-full">
+      <h1 class="heading">Orders</h1>
     </div>
   </div>
-  <div class="container px-5 py-24 mx-auto">
+  <div class="container px-5">
     <div class="flex flex-col">
-      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-          <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200">
+      <div class="table-responsive-container">
+        <div class="table-container">
+          <div class="table-wrapper">
+            <table class="table-full-divider">
               <thead class="bg-gray-50">
                 <tr>
-                  <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                  <th scope="col" class="table-heading">
                     Order
                   </th>
-                  <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                  <th scope="col" class="table-heading">
                     Date
                   </th>
-                  <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                  <th scope="col" class="table-heading">
                     Status
                   </th>
-                  <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                  <th scope="col" class="table-heading">
                     Total
                   </th>
                   <!--             <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    class="table-heading">
                     Actions
                   </th> -->
                 </tr>
@@ -37,22 +33,22 @@
               <tbody class="bg-white divide-y divide-gray-200">
                 @for(order of orders; track order.id){
                 <tr>
-                  <td class="px-6 py-4 whitespace-nowrap">
+                  <td class="table-cell">
                     <div class="flex items-center">
-                      <div class="text-sm font-medium text-gray-900">
+                      <div class="text-sm font-medium text-gray-default">
                         {{ order.id }}
                       </div>
                     </div>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-500">{{ order.fecha }}</div>
+                  <td class="table-cell">
+                    <div class="text-sm gray-lighter">{{ order.date }}</div>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="{{getClassOrderStatus(order.estatus)}}">
-                      {{order.estatus}}
+                  <td class="table-cell">
+                    <span class="{{getClassOrderStatus(order.status)}}">
+                      {{order.status}}
                     </span>
                   </td>
-                  <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                  <td class="table-cell gray-lighter">
                     {{ order.total | currency }}
                   </td>
                   <!--         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -67,7 +63,4 @@
       </div>
     </div>
   </div>
-
-
-
 </section>

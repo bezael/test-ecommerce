@@ -1,8 +1,8 @@
-<section class="text-gray-600 body-font">
+<section class="text-gray-light">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4">
       @for (product of filteredProducts; track product.id) {
-      <app-card (addToCartEvent)="onAddToCart($event)" class="w-full p-4 lg:w-1/4 md:w-1/2 " [product]="product" />
+      <app-card (addToCartEvent)="onAddToCart($event)" class="product-card" [product]="product" />
       }
     </div>
   </div>

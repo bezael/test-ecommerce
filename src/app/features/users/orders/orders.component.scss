@@ -1,0 +1,60 @@
+@tailwind components;
+
+@layer components {
+  .table-responsive-container {
+    @apply -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8;
+  }
+
+  .table-full-divided {
+    @apply min-w-full divide-y divide-gray-200;
+  }
+
+  .flex-col-full {
+    @apply *:flex flex-col w-full text-center;
+  }
+
+  .heading {
+    @apply text-3xl font-medium text-gray-900 sm:text-4xl title-font;
+  }
+
+  .table-heading {
+    @apply px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase;
+  }
+
+  .table-cell {
+    @apply px-6 py-4 whitespace-nowrap;
+  }
+
+  .text-medium {
+    @apply text-sm font-medium text-gray-900;
+  }
+
+  .table-container {
+    @apply inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8;
+  }
+
+  .table-wrapper {
+    @apply overflow-hidden border-b border-gray-200 shadow sm:rounded-lg;
+  }
+
+  // Version 3
+  .order-status {
+    @apply inline-flex px-2 text-xs font-semibold leading-5 rounded-full;
+  }
+
+  .succeeded {
+    @apply text-green-800 bg-green-100;
+    @extend .order-status;
+  }
+
+  .processing {
+    @apply text-yellow-800 bg-yellow-100;
+    @extend .order-status;
+  }
+
+  .canceled {
+    @apply text-red-800 bg-red-100;
+    @extend .order-status;
+  }
+
+}

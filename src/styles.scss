@@ -35,28 +35,19 @@
 // .canceled {
 //   @apply order-status text-red-800 bg-red-100;
 // }
+@layer components {
 
-button:disabled {
-  @apply cursor-not-allowed disabled:bg-primary-light;
-}
+  button:disabled {
+    @apply cursor-not-allowed disabled:bg-primary-light;
+  }
+
+  .product-price {
+    @apply text-2xl font-bold text-primary-default;
+  }
 
 
-// Version 3
-.order-status {
-  @apply inline-flex px-2 text-xs font-semibold leading-5 rounded-full;
-}
+  .flex-space-between {
+    @apply flex items-center justify-between;
+  }
 
-.succeeded {
-  @apply text-green-800 bg-green-100;
-  @extend .order-status;
-}
-
-.processing {
-  @apply text-yellow-800 bg-yellow-100;
-  @extend .order-status;
-}
-
-.canceled {
-  @apply text-red-800 bg-red-100;
-  @extend .order-status;
 }

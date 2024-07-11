@@ -10,7 +10,7 @@
       <a [routerLink]="['/products', (product().id)]">
         {{ product().title | slice: 0 : 30 }}</a>
     </h2>
-    <div class="product-price-container">
+    <div class="my-2 flex-space-between">
       <p class="product-price">{{ product().price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
       <app-add-to-cart (addToCartEvent)="onAddToCart()" />
     </div>
