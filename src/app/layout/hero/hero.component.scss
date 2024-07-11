@@ -21,9 +21,9 @@
     @apply flex w-1/4;
   }
 
-  .btn {
-    @apply w-full text-white bg-primary-default border-0 py-2 px-6 focus:outline-none hover:bg-primary-dark rounded text-lg;
-  }
+  // .btn {
+  //   @apply w-full text-white bg-primary-default border-0 py-2 px-6 focus:outline-none hover:bg-primary-dark rounded text-lg;
+  // }
 
   .image-container {
     @apply lg:max-w-lg lg:w-full md:w-1/2 w-5/6;

@@ -7,12 +7,8 @@
 }
 
 .heading {
-  @apply mt-5 text-xl font-semibold text-gray-900;
+  @apply mt-5 text-xl font-semibold text-gray-default;
 }
-
-// .subheading {
-//   @apply mt-2 text-gray-600;
-// }
 
 .link {
   @apply inline-block px-4 py-2 mt-6 font-bold text-white bg-primary-default rounded hover:bg-primary-dark;

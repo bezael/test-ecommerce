@@ -14,11 +14,11 @@
   }
 
   .heading {
-    @apply text-3xl font-medium text-gray-900 sm:text-4xl title-font;
+    @apply text-3xl font-medium text-gray-default sm:text-4xl title-font;
   }
 
   .table-heading {
-    @apply px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase;
+    @apply px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-lighter uppercase;
   }
 
   .table-cell {
@@ -26,7 +26,7 @@
   }
 
   .text-medium {
-    @apply text-sm font-medium text-gray-900;
+    @apply text-sm font-medium text-gray-default;
   }
 
   .table-container {

@@ -16,6 +16,11 @@ module.exports = {
           medium: '#475569',    // slate-600
           dark: '#334155',      // slate-700
           default: '#1e293b',   // slate-900
+        },
+        gray: {
+          lighter: '#6b7280',   // gray-500
+          light: '#4b5563',     // gray-600
+          default: '#111827',   // gray-900
         }
       }
     },
