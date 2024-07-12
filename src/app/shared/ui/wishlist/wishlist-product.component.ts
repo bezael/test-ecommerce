@@ -12,7 +12,11 @@ import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-heart-svg (click)="toggleWishlist()" [isDesired]="isDesired" />
+    <app-heart-svg
+      class="mr-1"
+      (click)="toggleWishlist()"
+      [isDesired]="isDesired"
+    />
     <span (click)="toggleWishlist()">Wishlist</span>
   `,
   imports: [HeartSVGComponent],
