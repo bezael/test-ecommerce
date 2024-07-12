@@ -3,11 +3,11 @@
 @layer components {
 
   .footer {
-    @apply w-full text-slate-dark;
+    @apply w-full text-slate-dark flex flex-col items-center bg-slate-lighter;
   }
 
   .footer-container {
-    @apply container px-5 py-4 ml-auto bg-slate-lighter;
+    @apply container px-5 py-4 ml-auto;
   }
 
   .footer-text {
