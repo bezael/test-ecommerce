@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
   output,
 } from '@angular/core';
 import { Product } from '@shared/models/product.interface';
@@ -23,10 +23,11 @@ import { HeartSVGComponent } from '@shared/ui/wishlist/svg/heart-svg.component';
 })
 export class WishlistProductComponent {
   onClickHeartEvent = output<number>();
-  @Input({ required: true }) public product!: Product;
-  isDesired = false;
+  isDesired = false; // NO debería necesitarla
 
-  // product = input.required<Product | undefined>();
+  product = input.required<Product>();
+  // @Input({ required: true }) public product!: Product;
+
   // isDesired:any;
   // isDesired = computed(() => this.product()?.isDesired)
   /*   isDesired = computed(() => {
@@ -43,7 +44,6 @@ export class WishlistProductComponent {
 
   public toggleWishlist(): void {
     this.isDesired = !this.isDesired;
-    this.product.isDesired = this.isDesired;
-    this.onClickHeartEvent.emit(this.product.id);
+    this.onClickHeartEvent.emit(this.product().id);
   }
 }

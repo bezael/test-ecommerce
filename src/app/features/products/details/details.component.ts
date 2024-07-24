@@ -19,11 +19,14 @@ export default class DetailsComponent {
   starsArray: number[] = new Array(5).fill(0);
   cartStore = inject(CartStore);
   wishlistSvc = inject(WishlistService);
-
+  //  transform: numberAttribute
   productId = input.required<number>({ alias: 'id' });
 
-  product = computed(() =>
-    this._productSvc.products()?.find(({ id }) => id == this.productId()),
+  product = computed(
+    () =>
+      this._productSvc
+        .products()
+        ?.find(({ id }) => id == this.productId()) as Product,
   );
 
   private readonly _productSvc = inject(ProductsService);
@@ -33,9 +36,9 @@ export default class DetailsComponent {
     this.cartStore.addToCart(this.product() as Product);
   }
 
-  public addOrRemoveFavorite(product: any): void {
-    console.log('Akiii', product);
-    this.wishlistSvc.addOrRemoveWishlist(product, 2);
+  public addOrRemoveFavorite(productId: any): void {
+    console.log('Akiii', productId);
+    this.wishlistSvc.addOrRemoveWishlist(productId, '65ef666cfcde52c1caf97a7c');
   }
 
   // TODO: Por Dios refactorizar esto

@@ -22,6 +22,8 @@ export class HeaderComponent {
   cart = input.required<CartState>();
   categories = input.required<string[]>();
   user = input.required<User | undefined>();
+
+  // showCart = false;
   showCart = signal<boolean>(false);
 
   onLogoutEvent = output();

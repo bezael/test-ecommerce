@@ -28,7 +28,7 @@ export class AddToCartComponent {
   buttonConfig = signal<AddToCartConfig>(defaultConfig);
   addToCartEvent = output();
 
-  onAddToCart() {
+  onAddToCart(): void {
     this.addToCartEvent.emit();
   }
 }

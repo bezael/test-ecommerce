@@ -1,28 +1,29 @@
+@if (product()) {
 <section class="product-section">
   <div class="product-container">
     <div class="product-wrapper">
-      <img alt="{{product()?.title}}" class="product-image" src="{{product()?.image}}">
+      <img alt="{{product().title}}" class="product-image" src="{{product().image}}">
       <div class="product-details">
-        <h2 class="product-category">{{product()?.category}}</h2>
-        <h1 class="product-title">{{product()?.title}}</h1>
+        <h2 class="product-category">{{product().category}}</h2>
+        <h1 class="product-title">{{product().title}}</h1>
         <div class="my-4 flex-space-between">
           <div class="product-reviews">
             @for (star of starsArray; track index; let index = $index) {
-            @if (product()?.rating?.rate) {
+            @if (product().rating.rate) {
             <span [innerHTML]="getStarSVG(index)"></span>
             }
             }
-            <span class="ml-3">{{product()?.rating?.count}} reviews</span>
+            <span class="ml-3">{{product().rating.count}} reviews</span>
           </div>
         </div>
-        <!-- <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite($event)" [product]="product()"
-          class="wishlist" /> -->
-        <p class="product-description">{{product()?.description}}</p>
+        <app-wishlist (onClickHeartEvent)="addOrRemoveFavorite($event)" [product]="product()" class="wishlist" />
+        <p class="product-description">{{product().description}}</p>
         <div class="flex">
-          <span class="product-price">{{product()?.price | currency}}</span>
+          <span class="product-price">{{product().price | currency}}</span>
           <app-add-to-cart class="ml-auto" (addToCartEvent)="onAddToCart()" />
         </div>
       </div>
     </div>
   </div>
 </section>
+}

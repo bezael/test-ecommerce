@@ -10,6 +10,7 @@ import { AuthInterceptor } from '@shared/interceptors/auth.interceptor';
 import { SpinnerInterceptor } from '@shared/interceptors/spinner.interceptor';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
+
 registerLocaleData(localeEs);
 
 export const appConfig: ApplicationConfig = {

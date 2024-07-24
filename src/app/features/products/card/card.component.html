@@ -1,18 +1,21 @@
+@let product = currentProduct();
+@if (product) {
 <div class="product-card">
-  <a class="product-image-link" [routerLink]="['/products', (product().id)]">
-    <img class="product-image" src="{{ product().image }}" alt="{{ product().title }}" />
+  <a class="product-image-link" [routerLink]="['/products', (product.id)]">
+    <img class="product-image" src="{{ product.image }}" alt="{{ product.title }}" />
   </a>
   <div class="mt-4">
     <h3 class="product-category">
-      {{ product().category }}
+      {{ product.category }}
     </h3>
     <h2 class="product-title">
-      <a [routerLink]="['/products', (product().id)]">
-        {{ product().title | slice: 0 : 30 }}</a>
+      <a [routerLink]="['/products', (product.id)]">
+        {{ product.title | slice: 0 : 30 }}</a>
     </h2>
     <div class="my-2 flex-space-between">
-      <p class="product-price">{{ product().price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
+      <p class="product-price">{{ product.price | currency:'EUR':'symbol':'1.2-2': 'es' }}</p>
       <app-add-to-cart (addToCartEvent)="onAddToCart()" />
     </div>
   </div>
 </div>
+}

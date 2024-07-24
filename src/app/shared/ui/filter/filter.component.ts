@@ -21,6 +21,7 @@ import {
           {{ 'ALL' }}
         </button>
       </li>
+      <!-- ngFor  -->
       @for (category of categories(); track $index) {
         <li>
           <button
