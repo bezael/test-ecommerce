@@ -5,9 +5,6 @@
     <img class="product-image" src="{{ product.image }}" alt="{{ product.title }}" />
   </a>
   <div class="mt-4">
-    <h3 class="product-category">
-      {{ product.category }}
-    </h3>
     <h2 class="product-title">
       <a [routerLink]="['/products', (product.id)]">
         {{ product.title | slice: 0 : 30 }}</a>

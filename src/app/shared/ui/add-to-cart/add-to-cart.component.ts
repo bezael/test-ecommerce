@@ -1,8 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   output,
-  signal,
 } from '@angular/core';
 
 interface AddToCartConfig {
@@ -19,13 +19,14 @@ const defaultConfig: AddToCartConfig = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button (click)="onAddToCart()" class="btn">
-      {{ buttonConfig().text }}
+      {{ config().text }}
     </button>
   `,
   styleUrl: './add-to-cart.component.scss',
 })
 export class AddToCartComponent {
-  buttonConfig = signal<AddToCartConfig>(defaultConfig);
+  /// buttonConfig = signal<AddToCartConfig>(defaultConfig);
+  config = input<AddToCartConfig>(defaultConfig);
   addToCartEvent = output();
 
   onAddToCart(): void {

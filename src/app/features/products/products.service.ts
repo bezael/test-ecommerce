@@ -1,24 +1,25 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { APIService } from '@api/api.service';
 import { environment } from '@envs/environment';
 import { Product } from '@shared/models/product.interface';
 import { map, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class ProductsService extends APIService {
+export class ProductsService {
   products = signal<Product[]>([]);
   //  productSelected = signal<Product | undefined>(undefined);
+  private readonly _apiService = inject(APIService);
 
   private readonly _endPoint = `${environment.API_URL_FAKE_STORE}/products`;
 
   constructor() {
-    super();
+    // super();
     this.getAllProducts();
   }
 
   getProductsByCategory(category: string): void {
-    // debugger;
-    this.get<Product[]>(`${this._endPoint}/category/${category}`)
+    this._apiService
+      .get<Product[]>(`${this._endPoint}/category/${category}`)
       .pipe(
         map((products: Product[]) => this._addProperties(products)),
         tap((products: Product[]) => this.products.set(products)),
@@ -26,7 +27,8 @@ export class ProductsService extends APIService {
       .subscribe();
   }
   getAllProducts(): void {
-    this.get<Product[]>(`${this._endPoint}?sort=desc`)
+    this._apiService
+      .get<Product[]>(`${this._endPoint}?sort=desc`)
       .pipe(
         map((products: Product[]) => this._addProperties(products)),
         tap((products: Product[]) => this.products.set(products)),
